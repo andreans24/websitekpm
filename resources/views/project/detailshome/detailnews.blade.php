@@ -323,7 +323,7 @@
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('about') }}">About us</a></li>
-                        <li><a href="{{ route('services') }}">Services</a></li>
+                        <li><a href="#services">Services</a></li>
                         <li><a href="{{ route('news') }}">News</a></li>
                     </ul>
                 </div>
@@ -331,24 +331,26 @@
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Our Services</h4>
                     <ul>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Product Management</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Graphic Design</a></li>
+                        @foreach ($categories as $category)
+                        <li>
+                            <a href="{{ route('detail-service', $category->id) }}">
+                                {{ $category->categories }} </a>
+                        </li>
+                        @endforeach
                     </ul>
                 </div>
 
                 <div class="col-lg-4 col-md-12 footer-newsletter">
-                    <h4>Our Newsletter</h4>
-                    <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-                    <form action="forms/newsletter.php" method="post" class="php-email-form">
-                        <div class="newsletter-form"><input type="email" name="email"><input type="submit"
-                                value="Subscribe"></div>
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-                    </form>
+                    <div class="logo">
+                        <img src="{{ asset('images/KPM.png') }}" alt="Logo" class="img-fluid mb-3"
+                            style="width: 200px;">
+                    </div>
+                    <div class="whatsapp-link">
+                        <a href="https://wa.me/6282114976405" target="_blank">
+                            <img src="{{ asset('images/wa.png') }}" alt="WhatsApp" class="img-fluid mb-3"
+                                style="width: 200px;">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

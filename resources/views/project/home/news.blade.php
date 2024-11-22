@@ -53,10 +53,10 @@
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach ($categories as $category)
-                                <li>
-                                    <a href="{{ route('detail-service', $category->id) }}">
-                                        {{ $category->categories }} </a>
-                                </li>
+                            <li>
+                                <a href="{{ route('detail-service', $category->id) }}">
+                                    {{ $category->categories }} </a>
+                            </li>
                             @endforeach
                         </ul>
                     </li>
@@ -91,32 +91,32 @@
             <div class="container">
                 <div class="row gy-4">
                     @foreach ($news as $item)
-                        <div class="col-lg-4">
-                            <article class="d-flex flex-column">
-                                <div class="post-img">
-                                    <img src="{{ asset('storage/' . $item->image) }}" alt="" class="img-fluid">
-                                </div>
-                                <h2 class="title">
-                                    <a href="{{ route('detail-news', $item->id) }}">{{ $item->title }}</a>
-                                </h2>
-                                <div class="meta-top">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                                href="#">Kopegmar</a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                                href="#"><time
-                                                    datetime="{{ $item->created_at }}">{{ $item->created_at->format('M d, Y') }}</time></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="content">
-                                    <p> {{ Str::limit(strip_tags($item->description), 150, '....') }} </p>
-                                </div>
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="{{ route('detail-news', $item->id) }}">Read More</a>
-                                </div>
-                            </article>
-                        </div><!-- End post list item -->
+                    <div class="col-lg-4">
+                        <article class="d-flex flex-column">
+                            <div class="post-img">
+                                <img src="{{ asset($item->image) }}" alt="" class="img-fluid">
+                            </div>
+                            <h2 class="title">
+                                <a href="{{ route('detail-news', $item->id) }}">{{ $item->title }}</a>
+                            </h2>
+                            <div class="meta-top">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                                            href="#">Kopegmar</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
+                                                datetime="{{ $item->created_at }}">{{ $item->created_at->format('M d,
+                                                Y') }}</time></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="content">
+                                <p> {{ Str::limit(strip_tags($item->description), 150, '....') }} </p>
+                            </div>
+                            <div class="read-more mt-auto align-self-end">
+                                <a href="{{ route('detail-news', $item->id) }}">Read More</a>
+                            </div>
+                        </article>
+                    </div><!-- End post list item -->
                     @endforeach
                 </div>
             </div>
@@ -136,7 +136,7 @@
         <div class="container footer-top">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="logo d-flex align-items-center">
+                    <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                         <span class="sitename">KOPEGMAR TG PRIOK</span>
                     </a>
                     <div class="footer-contact pt-3">
@@ -158,6 +158,7 @@
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('about') }}">About us</a></li>
+                        <li><a href="#services">Services</a></li>
                         <li><a href="{{ route('news') }}">News</a></li>
                     </ul>
                 </div>
@@ -166,26 +167,26 @@
                     <h4>Our Services</h4>
                     <ul>
                         @foreach ($categories as $category)
-                            <li>
-                                <a href="{{ route('detail-service', $category->id) }}">
-                                    {{ $category->categories }} </a>
-                            </li>
+                        <li>
+                            <a href="{{ route('detail-service', $category->id) }}">
+                                {{ $category->categories }} </a>
+                        </li>
                         @endforeach
                     </ul>
                 </div>
 
                 <div class="col-lg-4 col-md-12 footer-newsletter">
-                    <h4>Our Newsletter</h4>
-                    <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-                    <form action="forms/newsletter.php" method="post" class="php-email-form">
-                        <div class="newsletter-form"><input type="email" name="email"><input type="submit"
-                                value="Subscribe"></div>
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-                    </form>
+                    <div class="logo">
+                        <img src="{{ asset('images/KPM.png') }}" alt="Logo" class="img-fluid mb-3"
+                            style="width: 200px;">
+                    </div>
+                    <div class="whatsapp-link">
+                        <a href="https://wa.me/6282114976405" target="_blank">
+                            <img src="{{ asset('images/wa.png') }}" alt="WhatsApp" class="img-fluid mb-3"
+                                style="width: 200px;">
+                        </a>
+                    </div>
                 </div>
-
             </div>
         </div>
 

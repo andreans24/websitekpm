@@ -362,8 +362,8 @@
                     <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
                         <li data-filter="*" class="filter-active">All</li>
                         <li data-filter=".filter-anak-perusahaan">Anak Perusahaan</li>
-                        <li data-filter=".filter-rupa-rupa-usaha">Rupus</li>
-                        <li data-filter=".filter-jasa-tenaga-kerja">JTK</li>
+                        <li data-filter=".filter-rupa-rupa-usaha">Rupa - Rupa Usaha</li>
+                        <li data-filter=".filter-jasa-tenaga-kerja">Jasa Tenaga Kerja</li>
                     </ul><!-- End Portfolio Filters -->
                     <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
                         @foreach ($portfolios as $portfolio)
@@ -559,7 +559,7 @@
                     @foreach ($teams as $team)
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="member">
-                            <img src="{{ asset('storage/' . $team->image) }}" class="img-fluid" alt="{{ $team->name }}">
+                            <img src="{{ asset($team->image) }}" class="img-fluid" alt="{{ $team->name }}">
                             <div class="member-info">
                                 <div class="member-info-content">
                                     <h4> {{ $team->name }} </h4>
@@ -623,7 +623,7 @@
                     </div><!-- End Info Item -->
                     <div class="contact-info col-lg-3">
                         <div class="info-item d-flex flex-column justify-content-center align-items-center">
-                            <a href="https://wa.me/628123456789" target="_blank" class="whatsapp-link">
+                            <a href="https://wa.me/6287771760501" target="_blank" class="whatsapp-link">
                                 <i class="bi bi-whatsapp"></i> <br>
                                 Hubungi Kami <br> Via WhatsApp
                             </a>

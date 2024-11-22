@@ -48,15 +48,15 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('about') }}"class="active">About</a></li>
+                    <li><a href="{{ route('about') }}" class="active">About</a></li>
                     <li class="dropdown"><a href="#"><span>Services</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach ($categories as $category)
-                                <li>
-                                    <a href="{{ route('detail-service', $category->id) }}">
-                                        {{ $category->categories }} </a>
-                                </li>
+                            <li>
+                                <a href="{{ route('detail-service', $category->id) }}">
+                                    {{ $category->categories }} </a>
+                            </li>
                             @endforeach
                         </ul>
                     </li>
@@ -94,19 +94,19 @@
                             <div class="recent-posts-widget widget-item">
                                 <h3 class="widget-title">Recent Posts</h3>
                                 @foreach ($recentPosts as $recent)
-                                    <div class="post-item image-center">
-                                        <img src="{{ asset('storage/' . $recent->image) }}" alt=""
-                                            class="flex-shrink-0 img-fluid">
-                                        <div>
-                                            <h4><a
-                                                    href="{{ route('detail-news', $recent->id) }}">{{ $recent->title }}</a>
-                                            </h4>
-                                            <time
-                                                datetime="{{ $recent->created_at }}">{{ $recent->created_at->format('M d, Y') }}</time>
-                                        </div>
-                                    </div><!-- End recent post item-->
+                                <div class="post-item image-center">
+                                    <img src="{{ asset('storage/' . $recent->image) }}" alt=""
+                                        class="flex-shrink-0 img-fluid">
+                                    <div>
+                                        <h4><a href="{{ route('detail-news', $recent->id) }}">{{ $recent->title }}</a>
+                                        </h4>
+                                        <time datetime="{{ $recent->created_at }}">{{ $recent->created_at->format('M d,
+                                            Y') }}</time>
+                                    </div>
+                                </div><!-- End recent post item-->
                                 @endforeach
-                            </div><!--/Recent Posts Widget -->
+                            </div>
+                            <!--/Recent Posts Widget -->
                         </div>
 
                     </div>
@@ -115,8 +115,7 @@
                         <div class="container section-title">
                             <h2>Struktur Organisasi</h2>
                         </div><!-- End Section Title -->
-                        <img src="{{ asset('images/struktur organisasi.jpeg') }}" alt=""
-                            class="img-fluid services-img">
+                        <img src="{{ asset('images/struktur organisasi.jpeg') }}" alt="" class="img-fluid services-img">
                     </div>
                 </div>
             </div>
@@ -132,16 +131,16 @@
             <div class="container mt-4">
                 {{-- <h3 class="">Visi & Misi</h3> --}}
                 @if ($about)
-                    @php
-                        $visiMisi = Str_replace(
-                            '*',
-                            '<i class="bi bi-check-circle" style="color: #18d26e;"></i>',
-                            $about->visi_misi,
-                        );
-                    @endphp
-                    <div class="visi-misi-text">
-                        {!! $visiMisi !!}
-                    </div>
+                @php
+                $visiMisi = Str_replace(
+                '*',
+                '<i class="bi bi-check-circle" style="color: #18d26e;"></i>',
+                $about->visi_misi,
+                );
+                @endphp
+                <div class="visi-misi-text">
+                    {!! $visiMisi !!}
+                </div>
                 @endif
             </div>
         </section><!-- /Service Details Section -->
@@ -151,7 +150,7 @@
         <div class="container footer-top">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="logo d-flex align-items-center">
+                    <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                         <span class="sitename">KOPEGMAR TG PRIOK</span>
                     </a>
                     <div class="footer-contact pt-3">
@@ -172,7 +171,8 @@
                     <h4>Useful Links</h4>
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="#">About us</a></li>
+                        <li><a href="{{ route('about') }}">About us</a></li>
+                        <li><a href="#services">Services</a></li>
                         <li><a href="{{ route('news') }}">News</a></li>
                     </ul>
                 </div>
@@ -180,27 +180,26 @@
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Our Services</h4>
                     <ul>
-                        <ul>
-                            @foreach ($categories as $category)
-                                <li>
-                                    <a href="{{ route('detail-service', $category->id) }}">
-                                        {{ $category->categories }} </a>
-                                </li>
-                            @endforeach
-                        </ul>
+                        @foreach ($categories as $category)
+                        <li>
+                            <a href="{{ route('detail-service', $category->id) }}">
+                                {{ $category->categories }} </a>
+                        </li>
+                        @endforeach
                     </ul>
                 </div>
 
                 <div class="col-lg-4 col-md-12 footer-newsletter">
-                    <h4>Our Newsletter</h4>
-                    <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-                    <form action="forms/newsletter.php" method="post" class="php-email-form">
-                        <div class="newsletter-form"><input type="email" name="email"><input type="submit"
-                                value="Subscribe"></div>
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-                    </form>
+                    <div class="logo">
+                        <img src="{{ asset('images/KPM.png') }}" alt="Logo" class="img-fluid mb-3"
+                            style="width: 200px;">
+                    </div>
+                    <div class="whatsapp-link">
+                        <a href="https://wa.me/6282114976405" target="_blank">
+                            <img src="{{ asset('images/wa.png') }}" alt="WhatsApp" class="img-fluid mb-3"
+                                style="width: 200px;">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
