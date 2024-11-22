@@ -174,7 +174,7 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-md-3 footer-links">
+                {{-- <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Our Services</h4>
                     <ul>
                         @foreach ($categories as $category)
@@ -184,7 +184,7 @@
                         </li>
                         @endforeach
                     </ul>
-                </div>
+                </div> --}}
 
                 <div class="col-lg-4 col-md-12 footer-newsletter">
                     <div class="logo">

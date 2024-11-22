@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="{{ asset('admin-purple/src/assets/css/style.css') }}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('admin-purple/src/assets/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('templateWeb/assets/img/favicon2.png') }}" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
