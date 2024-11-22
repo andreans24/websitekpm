@@ -48,9 +48,11 @@ class PortfolioController extends Controller
                 $image = $request->file($imageField);
                 $imageName = time() . '_' . $image->getClientOriginalName();
 
-                $image->storeAs('public/images_portfolio/' . $folderName, $imageName);
+                // Simpan gambar langsung di folder public
+                $destinationPath = public_path('images_portfolio/' . $folderName);
+                $image->move($destinationPath, $imageName);
 
-                $images[$imageField] = 'storage/images_portfolio/' . $folderName . '/' . $imageName;
+                $images[$imageField] = 'images_portfolio/' . $folderName . '/' . $imageName;
             } else {
                 $images[$imageField] = null;
             }
@@ -94,19 +96,27 @@ class PortfolioController extends Controller
         // Update data portfolio
         $portfolio->update($validated);
 
-        // Jika ada gambar yang diupload, proses penyimpanan gambar
         foreach (['image1', 'image2', 'image3', 'image4'] as $imageField) {
             if ($request->hasFile($imageField)) {
+                // Hapus gambar lama jika ada
+                if ($portfolio->$imageField) {
+                    $oldImagePath = public_path($portfolio->$imageField);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
                 $image = $request->file($imageField);
                 $imageName = time() . '_' . $image->getClientOriginalName();
-                $folderName = PortfolioCategories::find($validated['category_id'])->name;
 
-                $image->storeAs('public/images_portfolio/' . $folderName, $imageName);
+                // Simpan gambar baru
+                $destinationPath = public_path('images_portfolio/' . $folderName);
+                $image->move($destinationPath, $imageName);
 
-                // Simpan path gambar di database
-                $portfolio->$imageField = 'storage/images_portfolio/' . $folderName . '/' . $imageName;
+                $portfolio->$imageField = 'images_portfolio/' . $folderName . '/' . $imageName;
             }
         }
+
         $portfolio->save();
 
         return redirect()->route('portfolios-index')->with('success', 'Portfolio updated successfully!');
@@ -117,12 +127,11 @@ class PortfolioController extends Controller
     {
         $categoryFolder = strtolower($portfolio->category->name);
         foreach (['image1', 'image2', 'image3', 'image4'] as $imageField) {
-            if ($portfolio->$imageField){
-
-                $imagePath = 'images_portfolio' . $categoryFolder . '/' . basename($portfolio->$imageField);
-
-
-                Storage::delete($imagePath);
+            if ($portfolio->$imageField) {
+                $imagePath = public_path($portfolio->$imageField);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
             }
         }
 

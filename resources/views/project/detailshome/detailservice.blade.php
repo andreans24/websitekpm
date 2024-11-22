@@ -42,8 +42,7 @@
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <img src="{{ asset('images/kpm2.png') }}" alt="" style="width: 70px; height: auto;">
-                        <img src="{{ asset('images/textkpm.png') }}" alt=""
-                            style="width: 150px; height: auto;">
+                        <img src="{{ asset('images/textkpm.png') }}" alt="" style="width: 150px; height: auto;">
                     </div>
                 </h1>
             </a>
@@ -56,10 +55,10 @@
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach ($categories as $category)
-                                <li>
-                                    <a href="{{ route('detail-service', $category->id) }}">
-                                        {{ $category->categories }} </a>
-                                </li>
+                            <li>
+                                <a href="{{ route('detail-service', $category->id) }}">
+                                    {{ $category->categories }} </a>
+                            </li>
                             @endforeach
                         </ul>
                     </li>
@@ -98,27 +97,26 @@
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="services-list">
                             @foreach ($categories as $category)
-                                <a href="{{ route('detail-service', $category->id) }}"
-                                    class="{{ request()->id == $category->id ? 'active' : '' }}">
-                                    {{ $category->categories }} </a>
+                            <a href="{{ route('detail-service', $category->id) }}"
+                                class="{{ request()->id == $category->id ? 'active' : '' }}">
+                                {{ $category->categories }} </a>
                             @endforeach
                             <!-- Recent Posts Widget -->
                             <div class="recent-posts-widget widget-item">
                                 <h3 class="widget-title">Recent Posts</h3>
                                 @foreach ($recentPosts as $recent)
-                                    <div class="post-item image-center">
-                                        <img src="{{ asset('storage/' . $recent->image) }}" alt=""
-                                            class="flex-shrink-0 img-fluid">
-                                        <div>
-                                            <h4><a
-                                                    href="{{ route('detail-news', $recent->id) }}">{{ $recent->title }}</a>
-                                            </h4>
-                                            <time
-                                                datetime="{{ $recent->created_at }}">{{ $recent->created_at->format('M d, Y') }}</time>
-                                        </div>
-                                    </div><!-- End recent post item-->
+                                <div class="post-item image-center">
+                                    <img src="{{ asset($recent->image) }}" alt="" class="flex-shrink-0 img-fluid">
+                                    <div>
+                                        <h4><a href="{{ route('detail-news', $recent->id) }}">{{ $recent->title }}</a>
+                                        </h4>
+                                        <time datetime="{{ $recent->created_at }}">{{ $recent->created_at->format('M d,
+                                            Y') }}</time>
+                                    </div>
+                                </div><!-- End recent post item-->
                                 @endforeach
-                            </div><!--/Recent Posts Widget -->
+                            </div>
+                            <!--/Recent Posts Widget -->
                         </div>
                     </div>
 
@@ -126,28 +124,28 @@
 
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
                         @if ($services)
-                            <img src="{{ asset('storage/' . $services->images) }}" alt="{{ $services->title }}"
-                                class="img-fluid services-img">
-                            <h3>{{ $services->title }}</h3>
+                        <img src="{{ asset($services->images) }}" alt="{{ $services->title }}"
+                            class="img-fluid services-img">
+                        <h3>{{ $services->title }}</h3>
                         @endif
                         {{-- deskripsi --}}
                         @if ($services)
-                            @php
-                                $description = str_replace(
-                                    '*',
-                                    '<i class="bi bi-check-circle" style="color: #18d26e;"></i>',
-                                    $services->description,
-                                );
-                            @endphp
-                            <div class="content">
-                                <p>{!! $description !!}</p>
-                            </div>
-                            <style>
-                                .content img {
-                                    max-width: 85%;
-                                    height: auto;
-                                }
-                            </style>
+                        @php
+                        $description = str_replace(
+                        '*',
+                        '<i class="bi bi-check-circle" style="color: #18d26e;"></i>',
+                        $services->description,
+                        );
+                        @endphp
+                        <div class="content">
+                            <p>{!! $description !!}</p>
+                        </div>
+                        <style>
+                            .content img {
+                                max-width: 85%;
+                                height: auto;
+                            }
+                        </style>
                         @endif
                     </div>
                 </div>

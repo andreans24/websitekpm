@@ -32,15 +32,19 @@ class ServiceController extends Controller
             'categorie_id' => 'required|exists:categories,id',
         ]);
 
-        if($request->hasFile('images')) {
-            $originalName = pathinfo($request->file('images')->getClientOriginalName(), PATHINFO_FILENAME);
-            $extension = $request->file('images')->getClientOriginalExtension();
-
-            $date = date('d-m-Y');
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $date = now()->format('d-m-Y'); // Format tanggal
             $fileName = $originalName . '_' . $date . '.' . $extension;
 
-            $imagePath = $request->file('images')->storeAs('service_images', $fileName, 'public');
-            $validated['images'] = $imagePath;
+            // Simpan langsung ke folder public/service_images
+            $destinationPath = public_path('service_images');
+            $file->move($destinationPath, $fileName);
+
+            // Simpan path gambar ke database
+            $validated['images'] = 'service_images/' . $fileName;
         }
 
         Service::create($validated);
@@ -70,23 +74,25 @@ class ServiceController extends Controller
 
         // Cek apakah ada file gambar baru
         if ($request->hasFile('images')) {
-            // Hapus file gambar lama dari storage
-            if ($service->images) {
-                Storage::disk('public')->delete($service->images);
+            // Hapus gambar lama
+            if ($service->images && file_exists(public_path($service->images))) {
+                unlink(public_path($service->images));
             }
-            // Simpan gambar baru dengan nama original dan tanggal
-            $originalName = pathinfo($request->file('images')->getClientOriginalName(), PATHINFO_FILENAME);
-            $date = now()->format('d-m-Y'); // Menggunakan format tanggal
-            $extension = $request->file('images')->getClientOriginalExtension();
-            
-            // Simpan file gambar yang baru tanpa menambahkan angka
+
+            $file = $request->file('images');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $date = now()->format('d-m-Y'); // Format tanggal
             $fileName = $originalName . '_' . $date . '.' . $extension;
 
-            // Simpan gambar baru
-            $imagePath = $request->file('images')->storeAs('service_images', $fileName, 'public');
-            $validated['images'] = $imagePath;
+            // Simpan langsung ke folder public/service_images
+            $destinationPath = public_path('service_images');
+            $file->move($destinationPath, $fileName);
+
+            // Simpan path gambar baru ke database
+            $validated['images'] = 'service_images/' . $fileName;
         } else {
-            // Jika tidak ada file gambar baru, tetap gunakan gambar yang ada
+            // Jika tidak ada gambar baru, tetap gunakan gambar lama
             $validated['images'] = $service->images;
         }
 
@@ -96,8 +102,8 @@ class ServiceController extends Controller
 
     public function destroy(Service $service)
     {
-        if ($service->images) {
-            Storage::disk('public')->delete($service->images);
+        if ($service->images && file_exists(public_path($service->images))) {
+            unlink(public_path($service->images));
         }
 
         $service->delete();

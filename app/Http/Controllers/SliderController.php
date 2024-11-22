@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class SliderController extends Controller
 {
@@ -21,24 +22,21 @@ class SliderController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:3048',
             'title' => 'required|string',
             'description' => 'nullable|string',
         ]);
-        // Ambil nama file asli
-        $originalName = $request->file('image')->getClientOriginalName();
 
-        // Buat nama baru dengan timestamp
-        $timestamp = time(); // Atau gunakan uniqid() untuk ID unik
-        $fileName = pathinfo($originalName, PATHINFO_FILENAME) . '_' . $timestamp . '.' . $request->file('image')->getClientOriginalExtension();
-
-        // Simpan gambar dengan nama baru
-        $imagePath = $request->file('image')->storeAs('images_slider', $fileName, 'public');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = $image->getClientOriginalName();
+            $image->move(public_path('images_slider'), $fileName);
+        }
 
         // Create Slider
         Slider::create([
-            'image' => $imagePath,
+            'image' => 'images_slider/' . $fileName,
             'title' => $request->title,
             'description' => $request->description,
         ]);
@@ -64,21 +62,18 @@ class SliderController extends Controller
 
         // Jika ada gambar baru diupload
         if ($request->hasFile('image')) {
-            // Hapus gambar lama dari storage
-            Storage::disk('public')->delete($slider->image);
+            // Hapus gambar lama dari direktori `public`
+            if (File::exists(public_path($slider->image))) {
+                File::delete(public_path($slider->image));
+            }
 
-            // Ambil nama file asli
-            $originalName = $request->file('image')->getClientOriginalName();
-            
-            // Buat nama baru dengan timestamp
-            $timestamp = time(); // Atau gunakan uniqid() untuk ID unik
-            $fileName = pathinfo($originalName, PATHINFO_FILENAME) . '_' . $timestamp . '.' . $request->file('image')->getClientOriginalExtension();
+            // Simpan gambar baru
+            $image = $request->file('image');
+            $fileName = $image->getClientOriginalName();
+            $image->move(public_path('images_slider'), $fileName);
 
-            // Simpan gambar baru dengan nama yang sudah diubah
-            $imagePath = $request->file('image')->storeAs('images_slider', $fileName, 'public');
-
-            // Update field gambar di database
-            $slider->image = $imagePath;
+            // Update path gambar
+            $slider->image = 'images_slider/' . $fileName;
         }
 
         // Update data slider
@@ -94,8 +89,9 @@ class SliderController extends Controller
         // Temukan slider berdasarkan ID yang diberikan
         $slider = Slider::findOrFail($id);
         
-        // Hapus Gambar dari storage
-        Storage::disk('public')->delete($slider->image);
+        if (File::exists(public_path($slider->image))) {
+            File::delete(public_path($slider->image));
+        }
 
         // Hapus slider dari database
         $slider->delete();

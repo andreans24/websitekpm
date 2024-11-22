@@ -39,7 +39,7 @@
                                     <td> {{ $s + 1 }} </td>
                                     <td>
                                         <!-- Cek jika ada gambar -->
-                                        <img src="{{ asset('storage/' . $slider->image) }}" alt="{{ $slider->title }}"
+                                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}"
                                             width="100">
                                     </td>
                                     <td>{{ $slider->title }} </td>

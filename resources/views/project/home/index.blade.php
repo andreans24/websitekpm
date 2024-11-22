@@ -52,10 +52,10 @@
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach ($categories as $category)
-                                <li>
-                                    <a href="{{ route('detail-service', $category->id) }}">
-                                        {{ $category->categories }} </a>
-                                </li>
+                            <li>
+                                <a href="{{ route('detail-service', $category->id) }}">
+                                    {{ $category->categories }} </a>
+                            </li>
                             @endforeach
                         </ul>
                     </li>
@@ -74,14 +74,14 @@
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel"
                 data-bs-interval="5000">
                 @foreach ($sliders as $index => $slider)
-                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                        <img src="{{ asset('storage/' . $slider->image) }}" alt="Slide {{ $index + 1 }}">
-                        <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            <p>{{ $slider->description }}</p>
-                            <a href="#featured-services" class="btn-get-started">Get Started</a>
-                        </div>
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <img src="{{ asset($slider->image) }}" alt="Slide {{ $index + 1 }}">
+                    <div class="carousel-container">
+                        <h2>{{ $slider->title }}</h2>
+                        <p>{{ $slider->description }}</p>
+                        <a href="#featured-services" class="btn-get-started">Get Started</a>
                     </div>
+                </div>
                 @endforeach
             </div>
 
@@ -94,7 +94,7 @@
             </a>
             <ol class="carousel-indicators">
                 @foreach ($sliders as $index => $slider)
-                    <li data-bs-target="#hero-carousel" data-bs-slide-to=""></li>
+                <li data-bs-target="#hero-carousel" data-bs-slide-to=""></li>
                 @endforeach
             </ol>
         </section><!-- /Hero Section -->
@@ -104,19 +104,19 @@
             <div class="container">
                 <div class="row gy-4 justify-content-center">
                     @foreach ($services as $service)
-                        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
-                            <div class="icon flex-shrink-0"><i class="{{ $service->icon }}"></i></div>
-                            <div>
-                                <h4 class="title"> {{ $service->title }} </h4>
-                                <p class="description-ellipsis">
-                                    {{ strip_tags(html_entity_decode($service->description)) }}
-                                </p>
-                                <a href="{{ route('detail-service', ['id' => $service->id]) }}"
-                                    class="readmore stretched-link"><span>Learn
-                                        More</span><i class="bi bi-arrow-right"></i></a>
-                            </div>
+                    <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon flex-shrink-0"><i class="{{ $service->icon }}"></i></div>
+                        <div>
+                            <h4 class="title"> {{ $service->title }} </h4>
+                            <p class="description-ellipsis">
+                                {{ strip_tags(html_entity_decode($service->description)) }}
+                            </p>
+                            <a href="{{ route('detail-service', ['id' => $service->id]) }}"
+                                class="readmore stretched-link"><span>Learn
+                                    More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
-                        <!-- End Service Item -->
+                    </div>
+                    <!-- End Service Item -->
                     @endforeach
                 </div>
             </div>
@@ -128,7 +128,7 @@
             <div class="container section-title" data-aos="fade-up">
                 <h2>About Us</h2>
                 @if ($about)
-                    <p style="text-align:justify"> {!! nl2br(e($about->about_me)) !!} </p>
+                <p style="text-align:justify"> {!! nl2br(e($about->about_me)) !!} </p>
                 @endif
                 <br>
             </div><!-- End Section Title -->
@@ -139,15 +139,15 @@
                         {{-- <p class="who-we-are">Who We Are</p> --}}
                         <h3>VISI & MISI</h3>
                         @if ($about)
-                            @php
-                                // Mengganti strip dengan ikon check-circle
-                                $visiMisi = str_replace(
-                                    '*',
-                                    '<i class="bi bi-check-circle" style="color: #18d26e;"></i> ',
-                                    $about->visi_misi,
-                                );
-                            @endphp
-                            <p class="text-justify">{!! $visiMisi !!}</p>
+                        @php
+                        // Mengganti strip dengan ikon check-circle
+                        $visiMisi = str_replace(
+                        '*',
+                        '<i class="bi bi-check-circle" style="color: #18d26e;"></i> ',
+                        $about->visi_misi,
+                        );
+                        @endphp
+                        <p class="text-justify">{!! $visiMisi !!}</p>
                         @endif
                         <a href="{{ route('about') }}" class="read-more"><span>Read More</span><i
                                 class="bi bi-arrow-right"></i></a>
@@ -184,8 +184,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-6 mx-2">
                         <div class="stats-item text-center w-100 h-100">
-                            <img src="{{ asset('images/medal.png') }}" alt=""
-                                class="img-fluid custom-img mb-3">
+                            <img src="{{ asset('images/medal.png') }}" alt="" class="img-fluid custom-img mb-3">
                             <p class="text-center">Vendor Terbaik Kategori Nilai Terbanyak Tahun 2021 dari PT Pelindo
                                 (Persero)</p>
                         </div>
@@ -193,32 +192,28 @@
 
                     <div class="col-lg-auto col-md-4 col-sm-6 mx-2">
                         <div class="stats-item text-center w-100 h-100">
-                            <img src="{{ asset('images/medal.png') }}" alt=""
-                                class="img-fluid custom-img mb-3">
+                            <img src="{{ asset('images/medal.png') }}" alt="" class="img-fluid custom-img mb-3">
                             <p class="text-center">Vendor Terbaik Tahun 2021 dari KSO TPK Koja</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-auto col-md-4 col-sm-6 mx-2">
                         <div class="stats-item text-center w-100 h-100">
-                            <img src="{{ asset('images/medal.png') }}" alt=""
-                                class="img-fluid custom-img mb-3">
+                            <img src="{{ asset('images/medal.png') }}" alt="" class="img-fluid custom-img mb-3">
                             <p class="text-center">Vendor Terbaik Tahun 2021 dari KSO TPK Koja</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-auto col-md-4 col-sm-6 mx-2">
                         <div class="stats-item text-center w-100 h-100">
-                            <img src="{{ asset('images/medal.png') }}" alt=""
-                                class="img-fluid custom-img mb-3">
+                            <img src="{{ asset('images/medal.png') }}" alt="" class="img-fluid custom-img mb-3">
                             <p class="text-center">100 Besar Koperasi Terbaik Indonesia Tahun 2015</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-auto col-md-4 col-sm-6 mx-2">
                         <div class="stats-item text-center w-100 h-100">
-                            <img src="{{ asset('images/medal.png') }}" alt=""
-                                class="img-fluid custom-img mb-3">
+                            <img src="{{ asset('images/medal.png') }}" alt="" class="img-fluid custom-img mb-3">
                             <p class="text-center">Koperasi Berprestasi Tahun 2011 dari Menteri Koperasi dan UMKM RI
                             </p>
                         </div>
@@ -238,19 +233,18 @@
             <div class="container">
                 <div class="row gy-4">
                     @foreach ($services as $service)
-                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="service-item d-flex position-relative h-100">
-                                <i class="{{ $service->icon }} icon flex-shrink-0"></i>
-                                <div>
-                                    <h4 class="title"><a
-                                            href="{{ route('detail-service', ['id' => $service->id]) }}"
-                                            class="stretched-link">{{ $service->title }}</a></h4>
-                                    <p class="description">
-                                        {{ strip_tags(html_entity_decode(Str::limit($service->description, 100))) }}
-                                    </p>
-                                </div>
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-item d-flex position-relative h-100">
+                            <i class="{{ $service->icon }} icon flex-shrink-0"></i>
+                            <div>
+                                <h4 class="title"><a href="{{ route('detail-service', ['id' => $service->id]) }}"
+                                        class="stretched-link">{{ $service->title }}</a></h4>
+                                <p class="description">
+                                    {{ strip_tags(html_entity_decode(Str::limit($service->description, 100))) }}
+                                </p>
                             </div>
-                        </div><!-- End Service Item -->
+                        </div>
+                    </div><!-- End Service Item -->
                     @endforeach
                 </div>
             </div>
@@ -267,84 +261,84 @@
                     <div class="slider">
                         <div class="slide-track">
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/1.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/1.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/2.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/2.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/3.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/3.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/4.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/4.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/5.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/5.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/6.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/6.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/7.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/7.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/8.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/8.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/9.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/9.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/10.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/10.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/11.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/11.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/12.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/12.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/13.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/13.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/14.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/14.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/15.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/15.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/16.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/16.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/17.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/17.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/18.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/18.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/19.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/19.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                             <div class="slide">
-                                <img src="{{ asset('templateWeb/assets/img/client/20.png') }}" height="100"
-                                    width="250" alt="" />
+                                <img src="{{ asset('templateWeb/assets/img/client/20.png') }}" height="100" width="250"
+                                    alt="" />
                             </div>
                         </div>
                     </div>
@@ -364,8 +358,7 @@
             </div><!-- End Section Title -->
 
             <div class="container">
-                <div class="isotope-layout" data-default-filter="*" data-layout="masonry"
-                    data-sort="original-order">
+                <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
                     <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
                         <li data-filter="*" class="filter-active">All</li>
                         <li data-filter=".filter-anak-perusahaan">Anak Perusahaan</li>
@@ -374,34 +367,31 @@
                     </ul><!-- End Portfolio Filters -->
                     <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
                         @foreach ($portfolios as $portfolio)
-                            <div
-                                class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ strtolower(str_replace(' ', '-', $portfolio->category->name)) }}">
-                                <div class="portfolio-images">
-                                    @php
-                                        $imageField = 'image1';
-                                    @endphp
-                                    @if ($portfolio->$imageField)
-                                        <img src="{{ asset($portfolio->$imageField) }}" alt="img-fluid"
-                                            {{ $portfolio->title }}>
-                                        <a href="{{ asset($portfolio->$imageField) }}"
-                                            title="{{ $portfolio->title }}"
-                                            data-gallery="portfolio-gallery-{{ $portfolio->id }}"
-                                            class="glightbox preview-link"></a>
-                                    @endif
-                                </div>
-                                {{-- <img src="{{ asset('templateWeb/assets/img/portfolio/app-1.jpg') }}"
-                                    class="img-fluid" alt=""> --}}
-                                <div class="portfolio-info">
-                                    <h4>{{ $portfolio->title }}</h4>
-                                    <p>{{ Str::limit(strip_tags($portfolio->description), 100, '...') }}</p>
-                                    <a href=" {{ asset($portfolio->image1) }}" title="{{ $portfolio->title }}"
-                                        data-gallery="portfolio-gallery-{{ $portfolio->id }}"
-                                        class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                    <a href="{{ route('detail-portfolio', ['id' => $portfolio->id]) }}"
-                                        title="More Details" class="details-link"><i
-                                            class="bi bi-link-45deg"></i></a>
-                                </div>
-                            </div><!-- End Portfolio Item -->
+                        <div
+                            class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ strtolower(str_replace(' ', '-', $portfolio->category->name)) }}">
+                            <div class="portfolio-images">
+                                @php
+                                $imageField = 'image1';
+                                @endphp
+                                @if ($portfolio->$imageField)
+                                <img src="{{ asset($portfolio->$imageField) }}" alt="img-fluid" {{ $portfolio->title }}>
+                                <a href="{{ asset($portfolio->$imageField) }}" title="{{ $portfolio->title }}"
+                                    data-gallery="portfolio-gallery-{{ $portfolio->id }}"
+                                    class="glightbox preview-link"></a>
+                                @endif
+                            </div>
+                            {{-- <img src="{{ asset('templateWeb/assets/img/portfolio/app-1.jpg') }}" class="img-fluid"
+                                alt=""> --}}
+                            <div class="portfolio-info">
+                                <h4>{{ $portfolio->title }}</h4>
+                                <p>{{ Str::limit(strip_tags($portfolio->description), 100, '...') }}</p>
+                                <a href=" {{ asset($portfolio->image1) }}" title="{{ $portfolio->title }}"
+                                    data-gallery="portfolio-gallery-{{ $portfolio->id }}"
+                                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="{{ route('detail-portfolio', ['id' => $portfolio->id]) }}" title="More Details"
+                                    class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
                         @endforeach
                     </div><!-- End Portfolio Container -->
                 </div>
@@ -567,36 +557,31 @@
             <div class="container">
                 <div class="row gy-4 flex-nowrap overflow-auto">
                     @foreach ($teams as $team)
-                        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="member">
-                                <img src="{{ asset('storage/' . $team->image) }}" class="img-fluid"
-                                    alt="{{ $team->name }}">
-                                <div class="member-info">
-                                    <div class="member-info-content">
-                                        <h4> {{ $team->name }} </h4>
-                                        <span>{{ $team->position }}</span>
-                                        <div class="social">
-                                            @if ($team->social_media_4)
-                                                <a href="{{ $team->social_media_4 }}"><i
-                                                        class="bi bi-twitter-x"></i></a>
-                                            @endif
-                                            @if ($team->social_media_1)
-                                                <a href="{{ $team->social_media_1 }}"><i
-                                                        class="bi bi-facebook"></i></a>
-                                            @endif
-                                            @if ($team->social_media_2)
-                                                <a href="{{ $team->social_media_2 }}"><i
-                                                        class="bi bi-instagram"></i></a>
-                                            @endif
-                                            @if ($team->social_media_3)
-                                                <a href="{{ $team->social_media_3 }}"><i
-                                                        class="bi bi-linkedin"></i></a>
-                                            @endif
-                                        </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="member">
+                            <img src="{{ asset('storage/' . $team->image) }}" class="img-fluid" alt="{{ $team->name }}">
+                            <div class="member-info">
+                                <div class="member-info-content">
+                                    <h4> {{ $team->name }} </h4>
+                                    <span>{{ $team->position }}</span>
+                                    <div class="social">
+                                        @if ($team->social_media_4)
+                                        <a href="{{ $team->social_media_4 }}"><i class="bi bi-twitter-x"></i></a>
+                                        @endif
+                                        @if ($team->social_media_1)
+                                        <a href="{{ $team->social_media_1 }}"><i class="bi bi-facebook"></i></a>
+                                        @endif
+                                        @if ($team->social_media_2)
+                                        <a href="{{ $team->social_media_2 }}"><i class="bi bi-instagram"></i></a>
+                                        @endif
+                                        @if ($team->social_media_3)
+                                        <a href="{{ $team->social_media_3 }}"><i class="bi bi-linkedin"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                        </div><!-- End Team Member -->
+                        </div>
+                    </div><!-- End Team Member -->
                     @endforeach
                 </div>
             </div>
@@ -650,19 +635,17 @@
                     data-aos-delay="300">
                     <div class="row gy-4">
                         <div class="col-md-6">
-                            <input type="text" name="name" class="form-control" placeholder="Your Name"
-                                required="">
+                            <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
                         </div>
                         <div class="col-md-6 ">
-                            <input type="email" class="form-control" name="email" placeholder="Your Email"
-                                required="">
+                            <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
                         </div>
                         <div class="col-md-12">
-                            <input type="text" class="form-control" name="subject" placeholder="Subject"
-                                required="">
+                            <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
                         </div>
                         <div class="col-md-12">
-                            <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                            <textarea class="form-control" name="message" rows="6" placeholder="Message"
+                                required=""></textarea>
                         </div>
                         <div class="col-md-12 text-center">
                             <div class="loading">Loading</div>
@@ -711,10 +694,10 @@
                     <h4>Our Services</h4>
                     <ul>
                         @foreach ($categories as $category)
-                            <li>
-                                <a href="{{ route('detail-service', $category->id) }}">
-                                    {{ $category->categories }} </a>
-                            </li>
+                        <li>
+                            <a href="{{ route('detail-service', $category->id) }}">
+                                {{ $category->categories }} </a>
+                        </li>
                         @endforeach
                     </ul>
                 </div>
