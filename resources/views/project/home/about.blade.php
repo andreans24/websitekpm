@@ -172,13 +172,12 @@
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('about') }}">About us</a></li>
-                        <li><a href="#services">Services</a></li>
                         <li><a href="{{ route('news') }}">News</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
+                    <h4>Layanan Kami</h4>
                     <ul>
                         @foreach ($categories as $category)
                         <li>
@@ -195,7 +194,7 @@
                             style="width: 200px;">
                     </div>
                     <div class="whatsapp-link">
-                        <a href="https://wa.me/6282114976405" target="_blank">
+                        <a href="https://wa.me/6287771760501" target="_blank">
                             <img src="{{ asset('images/wa.png') }}" alt="WhatsApp" class="img-fluid mb-3"
                                 style="width: 200px;">
                         </a>

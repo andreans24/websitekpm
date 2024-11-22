@@ -126,7 +126,7 @@
         <section id="about" class="about section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>About Us</h2>
+                <h2>Tentang Kami</h2>
                 @if ($about)
                 <p style="text-align:justify"> {!! nl2br(e($about->about_me)) !!} </p>
                 @endif
@@ -177,7 +177,7 @@
         <!-- Stats Section -->
         <section id="stats" class="stats section light-background">
             <div class="container section-title" data-aos="fade-up">
-                <h2>Award</h2>
+                <h2>Penghargaan</h2>
             </div>
             <div class="container" data-aos="fade-up" data-aos-delay="100">
                 <div class="row justify-content-center gy-2 flex-wrap">
@@ -226,7 +226,7 @@
         <section id="services" class="services section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Services</h2>
+                <h2>Layanan Kami</h2>
                 <p>Kami Siap Melayani Anda</p>
             </div><!-- End Section Title -->
 
@@ -256,7 +256,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-8">
                     <div class="container section-title">
-                        <h2 style="color: rgb(255, 255, 255);">Our Clients</h2>
+                        <h2 style="color: rgb(255, 255, 255);">Klien Kami</h2>
                     </div>
                     <div class="slider">
                         <div class="slide-track">
@@ -591,15 +591,15 @@
         <section id="contact" class="contact section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Contact</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+                <h2>Kontak</h2>
+                {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
             </div><!-- End Section Title -->
             <div class="container" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-12" data-aos="fade-up" data-aos-delay="200">
                     <div class="col-lg-3">
                         <div class="info-item d-flex flex-column justify-content-center align-items-center">
                             <i class="bi bi-geo-alt"></i>
-                            <h3>Address</h3>
+                            <h3>Alamat</h3>
                             <p>{{ $office->alamat }}</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -608,7 +608,7 @@
                         <div class="info-item d-flex flex-column justify-content-center align-items-center info-item-borders"
                             style="border-right: 1px solid #ddd; padding-right: 15px;">
                             <i class="bi bi-telephone"></i>
-                            <h3>Call Us</h3>
+                            <h3>Telephone</h3>
                             <p> {{ $office->notlp }} </p>
                         </div>
                     </div><!-- End Info Item -->
@@ -617,7 +617,7 @@
                         <div class="info-item d-flex flex-column justify-content-center align-items-center"
                             style="border-right: 1px solid #ddd; padding-right: 15px;">
                             <i class="bi bi-envelope"></i>
-                            <h3>Email Us</h3>
+                            <h3>Email</h3>
                             <p>{{ $office->email }}</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -691,7 +691,7 @@
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
+                    <h4>Layanan Kami</h4>
                     <ul>
                         @foreach ($categories as $category)
                         <li>
@@ -708,7 +708,7 @@
                             style="width: 200px;">
                     </div>
                     <div class="whatsapp-link">
-                        <a href="https://wa.me/6282114976405" target="_blank">
+                        <a href="https://wa.me/6287771760501" target="_blank">
                             <img src="{{ asset('images/wa.png') }}" alt="WhatsApp" class="img-fluid mb-3"
                                 style="width: 200px;">
                         </a>

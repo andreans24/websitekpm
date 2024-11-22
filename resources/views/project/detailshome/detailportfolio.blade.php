@@ -170,7 +170,6 @@
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('about') }}">About us</a></li>
-                        <li><a href="#services">Services</a></li>
                         <li><a href="{{ route('news') }}">News</a></li>
                     </ul>
                 </div>
@@ -193,7 +192,7 @@
                             style="width: 200px;">
                     </div>
                     <div class="whatsapp-link">
-                        <a href="https://wa.me/6282114976405" target="_blank">
+                        <a href="https://wa.me/6287771760501" target="_blank">
                             <img src="{{ asset('images/wa.png') }}" alt="WhatsApp" class="img-fluid mb-3"
                                 style="width: 200px;">
                         </a>

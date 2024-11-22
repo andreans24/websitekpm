@@ -75,7 +75,7 @@
         <div class="page-title dark-background" data-aos="fade"
             style="background-image: url('{{ asset('images/textkpm.png') }}');">
             <div class="container position-relative">
-                <h1>Contact Details</h1>
+                <h1>Kontak Details</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ route('home') }}">Home</a></li>
@@ -89,14 +89,14 @@
         <section id="contact" class="contact section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Contact</h2>
+                <h2>Kontak</h2>
             </div><!-- End Section Title -->
             <div class="container" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-12" data-aos="fade-up" data-aos-delay="200">
                     <div class="col-lg-3">
                         <div class="info-item d-flex flex-column justify-content-center align-items-center">
                             <i class="bi bi-geo-alt"></i>
-                            <h3>Address</h3>
+                            <h3>Alamat</h3>
                             <p>{{ $office->alamat }}</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -106,7 +106,7 @@
                             style="border-right: 1px solid #ddd; padding-right: 15px;">
                             <i class="bi
                             bi-telephone"></i>
-                            <h3>Call Us</h3>
+                            <h3>Telephone</h3>
                             <p> {{ $office->notlp }} </p>
                         </div>
                     </div><!-- End Info Item -->
@@ -115,7 +115,7 @@
                         <div class="info-item d-flex flex-column justify-content-center align-items-center"
                             style="border-right: 1px solid #ddd; padding-right: 15px;">
                             <i class="bi bi-envelope"></i>
-                            <h3>Email Us</h3>
+                            <h3>Email</h3>
                             <p>{{ $office->email }}</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -184,13 +184,12 @@
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('about') }}">About us</a></li>
-                        <li><a href="#services">Services</a></li>
                         <li><a href="{{ route('news') }}">News</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
+                    <h4>Layanan Kami</h4>
                     <ul>
                         @foreach ($categories as $category)
                         <li>
@@ -207,7 +206,7 @@
                             style="width: 200px;">
                     </div>
                     <div class="whatsapp-link">
-                        <a href="https://wa.me/6282114976405" target="_blank">
+                        <a href="https://wa.me/6287771760501" target="_blank">
                             <img src="{{ asset('images/wa.png') }}" alt="WhatsApp" class="img-fluid mb-3"
                                 style="width: 200px;">
                         </a>
