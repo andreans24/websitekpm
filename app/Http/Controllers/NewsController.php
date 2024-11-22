@@ -8,6 +8,7 @@ use App\Models\Office;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class NewsController extends Controller
 {
@@ -32,7 +33,8 @@ class NewsController extends Controller
 
         if ($request->hasFile('images')) {
             $imageName = time() . '.' . $request->file('images')->getClientOriginalExtension();
-            $imagePath = $request->file('images')->storeAs('news_images', $imageName, 'public');
+            $request->file('images')->move(public_path('news_images'), $imageName);
+            $imagePath = 'news_images/' . $imageName;
         } else {
             $imagePath = null;
         }
@@ -62,21 +64,20 @@ class NewsController extends Controller
             'images' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Cari data yang akan di-update
         $news = News::findOrFail($id);
-
-        // Cek apakah ada file image yang di-upload
+        
         if ($request->hasFile('images')) {
-            // Hapus gambar lama jika ada dan gambar baru di-upload
-            if ($news->image) {
-                Storage::disk('public')->delete($news->image);
+            // Hapus gambar lama jika ada
+            if ($news->image && file_exists(public_path($news->image))) {
+                unlink(public_path($news->image));
             }
-
+    
             // Simpan gambar baru
             $imageName = time() . '.' . $request->file('images')->getClientOriginalExtension();
-            $imagePath = $request->file('images')->storeAs('news_images', $imageName, 'public');
+            $request->file('images')->move(public_path('news_images'), $imageName);
+            $imagePath = 'news_images/' . $imageName;
         } else {
-            // Jika tidak ada file gambar baru, tetap gunakan gambar lama
+            // Gunakan gambar lama jika tidak ada file baru
             $imagePath = $news->image;
         }
 

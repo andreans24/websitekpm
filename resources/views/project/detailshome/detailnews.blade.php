@@ -38,8 +38,7 @@
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <img src="{{ asset('images/kpm2.png') }}" alt="" style="width: 70px; height: auto;">
-                        <img src="{{ asset('images/textkpm.png') }}" alt=""
-                            style="width: 150px; height: auto;">
+                        <img src="{{ asset('images/textkpm.png') }}" alt="" style="width: 150px; height: auto;">
                     </div>
                 </h1>
             </a>
@@ -51,10 +50,10 @@
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach ($categories as $category)
-                                <li>
-                                    <a href="{{ route('detail-service', $category->id) }}">
-                                        {{ $category->categories }} </a>
-                                </li>
+                            <li>
+                                <a href="{{ route('detail-service', $category->id) }}">
+                                    {{ $category->categories }} </a>
+                            </li>
                             @endforeach
                         </ul>
                     </li>
@@ -91,7 +90,7 @@
                         <div class="container">
                             <article class="article">
                                 <div class="post-img">
-                                    <img src="{{ asset('storage/' . $news->image) }}" alt="" class="img-fluid">
+                                    <img src="{{ asset($news->image) }}" alt="" class="img-fluid">
                                 </div>
                                 <h2 class="title">{{ $news->title }}</h2>
                                 <div class="meta-top">
@@ -99,8 +98,8 @@
                                         <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
                                                 href="">Kopegmar</a></li>
                                         <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                                href=""><time
-                                                    datetime="{{ $news->created_at }}">{{ $news->created_at->format('M d, Y') }}</time></a>
+                                                href=""><time datetime="{{ $news->created_at }}">{{
+                                                    $news->created_at->format('M d, Y') }}</time></a>
                                         </li>
                                         <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
                                                 href="#comments-section">{{ $commentCount }} Comments</a></li>
@@ -137,73 +136,70 @@
                         <div class="container">
                             <h4 class="comments-count">{{ $comments->count() }}</h4>
                             @foreach ($comments as $comment)
-                                <div id="comment-{{ $comment->id }}" class="comment">
-                                    <div class="d-flex">
-                                        <div class="comment-img"><img src="{{ asset('path/to/avatar.png') }}"
-                                                alt=""></div>
-                                        <div>
-                                            <h5><a href="#">{{ $comment->name }}</a>
-                                                <a href="#" class="reply"
-                                                    onclick="toggleReplyForm({{ $comment->id }})"><i
-                                                        class="bi bi-reply-fill"></i>
-                                                    Reply</a>
-                                            </h5>
-                                            <time
-                                                datetime="{{ $comment->created_at }}">{{ $comment->created_at->format('M d, Y') }}</time>
-                                            <p> {{ $comment->comment }} </p>
-                                        </div>
+                            <div id="comment-{{ $comment->id }}" class="comment">
+                                <div class="d-flex">
+                                    <div class="comment-img"><img src="{{ asset('path/to/avatar.png') }}" alt=""></div>
+                                    <div>
+                                        <h5><a href="#">{{ $comment->name }}</a>
+                                            <a href="#" class="reply" onclick="toggleReplyForm({{ $comment->id }})"><i
+                                                    class="bi bi-reply-fill"></i>
+                                                Reply</a>
+                                        </h5>
+                                        <time datetime="{{ $comment->created_at }}">{{ $comment->created_at->format('M
+                                            d, Y') }}</time>
+                                        <p> {{ $comment->comment }} </p>
                                     </div>
-                                    @if ($comment->parent_id)
-                                        <div class="comment comment-reply">
-                                            <!-- Ini bisa diisi dengan komentar balasan jika ada -->
+                                </div>
+                                @if ($comment->parent_id)
+                                <div class="comment comment-reply">
+                                    <!-- Ini bisa diisi dengan komentar balasan jika ada -->
+                                </div>
+                                @else
+                                <!-- Form untuk reply -->
+                                <div class="reply-form" id="reply-form-{{ $comment->id }}" style="display:none;">
+                                    <form action="{{ route('comments-store', $news->id) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                                        <div class="form-group">
+                                            <input name="name" type="text" class="form-control" placeholder="Your Name*"
+                                                required>
                                         </div>
-                                    @else
-                                        <!-- Form untuk reply -->
-                                        <div class="reply-form" id="reply-form-{{ $comment->id }}"
-                                            style="display:none;">
-                                            <form action="{{ route('comments-store', $news->id) }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="parent_id" value="{{ $comment->id }}">
-                                                <div class="form-group">
-                                                    <input name="name" type="text" class="form-control"
-                                                        placeholder="Your Name*" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input name="email" type="text" class="form-control"
-                                                        placeholder="Your Email*" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <textarea name="comment" class="form-control" placeholder="Your Reply*" required></textarea>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Post Reply</button>
-                                            </form>
+                                        <div class="form-group">
+                                            <input name="email" type="text" class="form-control"
+                                                placeholder="Your Email*" required>
                                         </div>
-                                        <!-- Menampilkan balasan komentar -->
-                                        <div class="replies">
-                                            @foreach ($comments as $reply)
-                                                @if ($reply->parent_id === $comment->id)
-                                                    <!-- Memeriksa apakah ini balasan -->
-                                                    <div class="comment comment-reply">
-                                                        <div class="d-flex">
-                                                            <div class="comment-img">
-                                                                <img src="{{ asset('path/to/avatar.png') }}"
-                                                                    alt="">
-                                                            </div>
-                                                            <div>
-                                                                <h5><a href="">{{ $reply->name }}</a></h5>
-                                                                <time datetime="{{ $reply->created_at }}">
-                                                                    {{ $reply->created_at->format('M d, Y') }}
-                                                                </time>
-                                                                <p>{{ $reply->comment }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- End reply comment -->
-                                                @endif
-                                            @endforeach
+                                        <div class="form-group">
+                                            <textarea name="comment" class="form-control" placeholder="Your Reply*"
+                                                required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Post Reply</button>
+                                    </form>
+                                </div>
+                                <!-- Menampilkan balasan komentar -->
+                                <div class="replies">
+                                    @foreach ($comments as $reply)
+                                    @if ($reply->parent_id === $comment->id)
+                                    <!-- Memeriksa apakah ini balasan -->
+                                    <div class="comment comment-reply">
+                                        <div class="d-flex">
+                                            <div class="comment-img">
+                                                <img src="{{ asset('path/to/avatar.png') }}" alt="">
+                                            </div>
+                                            <div>
+                                                <h5><a href="">{{ $reply->name }}</a></h5>
+                                                <time datetime="{{ $reply->created_at }}">
+                                                    {{ $reply->created_at->format('M d, Y') }}
+                                                </time>
+                                                <p>{{ $reply->comment }}</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- End reply comment -->
+                                    @endif
+                                    @endforeach
                                     @endif
                                 </div><!-- End comment #1 -->
-                            @endforeach
-                        </div>
+                                @endforeach
+                            </div>
                     </section><!-- /Blog Comments Section -->
 
                     <!-- Comment Form Section -->
@@ -217,17 +213,18 @@
                                 <!-- Menyimpan ID berita -->
                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <input name="name" type="text" class="form-control"
-                                            placeholder="Your Name*" required>
+                                        <input name="name" type="text" class="form-control" placeholder="Your Name*"
+                                            required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input name="email" type="text" class="form-control"
-                                            placeholder="Your Email*" required>
+                                        <input name="email" type="text" class="form-control" placeholder="Your Email*"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
-                                        <textarea name="comment" class="form-control" placeholder="Your Comment*" required></textarea>
+                                        <textarea name="comment" class="form-control" placeholder="Your Comment*"
+                                            required></textarea>
                                     </div>
                                 </div>
                                 <div class="text-center">
@@ -247,7 +244,8 @@
                                 <input type="text">
                                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
                             </form>
-                        </div><!--/Search Widget -->
+                        </div>
+                        <!--/Search Widget -->
                         <!-- Categories Widget -->
                         <div class="categories-widget widget-item">
                             <h3 class="widget-title">Services</h3>
@@ -256,24 +254,24 @@
                                 <li><a href="#">Jasa Tenaga Kerja <span>(12)</span></a></li>
                                 <li><a href="#">Rupa - Rupa Usaha <span>(5)</span></a></li>
                             </ul>
-                        </div><!--/Categories Widget -->
+                        </div>
+                        <!--/Categories Widget -->
                         <!-- Recent Posts Widget -->
                         <div class="recent-posts-widget widget-item">
                             <h3 class="widget-title">Recent Posts</h3>
                             @foreach ($recentPosts as $recent)
-                                <div class="post-item image-center">
-                                    <img src="{{ asset('storage/' . $recent->image) }}" alt=""
-                                        class="flex-shrink-0 img-fluid">
-                                    <div>
-                                        <h4><a
-                                                href="{{ route('detail-news', $recent->id) }}">{{ $recent->title }}</a>
-                                        </h4>
-                                        <time
-                                            datetime="{{ $recent->created_at }}">{{ $recent->created_at->format('M d, Y') }}</time>
-                                    </div>
-                                </div><!-- End recent post item-->
+                            <div class="post-item image-center">
+                                <img src="{{ asset($recent->image) }}" alt="" class="flex-shrink-0 img-fluid">
+                                <div>
+                                    <h4><a href="{{ route('detail-news', $recent->id) }}">{{ $recent->title }}</a>
+                                    </h4>
+                                    <time datetime="{{ $recent->created_at }}">{{ $recent->created_at->format('M d, Y')
+                                        }}</time>
+                                </div>
+                            </div><!-- End recent post item-->
                             @endforeach
-                        </div><!--/Recent Posts Widget -->
+                        </div>
+                        <!--/Recent Posts Widget -->
 
                         <!-- Tags Widget -->
                         <div class="tags-widget widget-item">
@@ -291,7 +289,8 @@
                                 <li><a href="#">Tips</a></li>
                                 <li><a href="#">Marketing</a></li>
                             </ul>
-                        </div><!--/Tags Widget -->
+                        </div>
+                        <!--/Tags Widget -->
                     </div>
                 </div>
             </div>
