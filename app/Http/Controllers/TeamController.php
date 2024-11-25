@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class TeamController extends Controller
 {
@@ -34,8 +34,10 @@ class TeamController extends Controller
         $imagePath = null;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time(). '.' .$image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('team_images/', $imageName, 'public');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path('team_images'), $imageName);
+            $imagePath = 'team_images/' . $imageName;
         }
 
         // Simpan data ke database
@@ -80,15 +82,18 @@ class TeamController extends Controller
         $team->social_media_4 = $request->input('social_media_4');
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama jika ada
             if ($team->image) {
-                Storage::disk('public')->delete($team->image);
+                $oldImagePath = public_path($team->image);
+                if (File::exists($oldImagePath)) {
+                    File::delete($oldImagePath);
+                }
             }
-            
-            // Simpan gambar baru
-            $imageName = time(). '.' . $request->file('image')->getClientOriginalExtension();
-            $imagePath = $request->file('image')->storeAs('team_images', $imageName, 'public');
-            $team->image = $imagePath; // Update image path
+
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path('team_images'), $imageName);
+            $team->image = 'team_images/' . $imageName;
         }
 
         $team->save();
@@ -100,7 +105,10 @@ class TeamController extends Controller
     {
         $team = Team::find($id);
         if ($team->image) {
-            Storage::disk('public')->delete($team->image); // Hapus gambar dari folder public
+            $imagePath = public_path($team->image);
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
         }
         $team->delete();
 

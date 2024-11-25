@@ -39,8 +39,8 @@
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="images/kpm2.png" alt="" style="width: 70px; height: auto;">
-                        <img src="images/textkpm.png" alt="" style="width: 150px; height: auto;">
+                        <img src="{{ asset('images/kpm2.png') }}" alt="" style="width: 70px; height: auto;">
+                        <img src="{{ asset('images/textkpm.png') }}" alt="" style="width: 150px; height: auto;">
                     </div>
                 </h1>
             </a>
@@ -51,12 +51,22 @@
                     <li class="dropdown"><a href="#"><span>Services</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            @foreach ($categories as $category)
+                            @forelse ($categories as $category)
+                            <li>
+                                <a href="{{ route('detail-service', $category->id) }}">
+                                    {{ $category->categories }}
+                                </a>
+                            </li>
+                            @empty
+                            <li><a href="{{ route('error-page') }}">Kategori tidak tersedia</a></li> {{-- Tautan ke
+                            halaman error --}}
+                            @endforelse
+                            {{-- @foreach ($categories as $category)
                             <li>
                                 <a href="{{ route('detail-service', $category->id) }}">
                                     {{ $category->categories }} </a>
                             </li>
-                            @endforeach
+                            @endforeach --}}
                         </ul>
                     </li>
                     <li><a href="{{ route('news') }}">News</a></li>
@@ -94,7 +104,8 @@
             </a>
             <ol class="carousel-indicators">
                 @foreach ($sliders as $index => $slider)
-                <li data-bs-target="#hero-carousel" data-bs-slide-to=""></li>
+                <li data-bs-target="#hero-carousel" data-bs-slide-to="{{ $index }}">{{ $index === 0 ? 'active' : '' }}
+                </li>
                 @endforeach
             </ol>
         </section><!-- /Hero Section -->
@@ -374,14 +385,13 @@
                                 $imageField = 'image1';
                                 @endphp
                                 @if ($portfolio->$imageField)
-                                <img src="{{ asset($portfolio->$imageField) }}" alt="img-fluid" {{ $portfolio->title }}>
+                                <img src="{{ asset($portfolio->$imageField) }}" alt="{{ $portfolio->title }}"
+                                    class="img-fluid">
                                 <a href="{{ asset($portfolio->$imageField) }}" title="{{ $portfolio->title }}"
                                     data-gallery="portfolio-gallery-{{ $portfolio->id }}"
                                     class="glightbox preview-link"></a>
                                 @endif
                             </div>
-                            {{-- <img src="{{ asset('templateWeb/assets/img/portfolio/app-1.jpg') }}" class="img-fluid"
-                                alt=""> --}}
                             <div class="portfolio-info">
                                 <h4>{{ $portfolio->title }}</h4>
                                 <p>{{ Str::limit(strip_tags($portfolio->description), 100, '...') }}</p>
@@ -397,155 +407,6 @@
                 </div>
             </div>
         </section><!-- /Portfolio Section -->
-
-        <!-- Testimonials Section -->
-        {{-- <section id="testimonials" class="testimonials section">
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Testimonials</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-            </div><!-- End Section Title -->
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="swiper init-swiper">
-                    <script type="application/json" class="swiper-config">
-                        {
-                        "loop": true,
-                        "speed": 600,
-                        "autoplay": {
-                            "delay": 5000
-                        },
-                        "slidesPerView": "auto",
-                        "pagination": {
-                            "el": ".swiper-pagination",
-                            "type": "bullets",
-                            "clickable": true
-                        }
-                        }
-                    </script>
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="templateWeb/assets/img/testimonials/testimonials-1.jpg"
-                                    class="testimonial-img" alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora
-                                        entum
-                                        suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh
-                                        et.
-                                        Maecen aliquam, risus at semper.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="templateWeb/assets/img/testimonials/testimonials-2.jpg"
-                                    class="testimonial-img" alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Export tempor illum tamen malis malis eram quae irure esse labore quem
-                                        cillum
-                                        quid cillum eram malis quorum velit fore eram velit sunt aliqua noster
-                                        fugiat
-                                        irure amet legam anim culpa.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="templateWeb/assets/img/testimonials/testimonials-3.jpg"
-                                    class="testimonial-img" alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum
-                                        nulla
-                                        quem veniam duis minim tempor labore quem eram duis noster aute amet
-                                        eram
-                                        fore
-                                        quis sint minim.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="templateWeb/assets/img/testimonials/testimonials-4.jpg"
-                                    class="testimonial-img" alt="">
-                                <h3>Matt Brandon</h3>
-                                <h4>Freelancer</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos
-                                        export
-                                        minim
-                                        fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt
-                                        elit
-                                        fore
-                                        quem dolore labore illum veniam.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="templateWeb/assets/img/testimonials/testimonials-5.jpg"
-                                    class="testimonial-img" alt="">
-                                <h3>John Larson</h3>
-                                <h4>Entrepreneur</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam
-                                        tempor
-                                        noster veniam enim culpa labore duis sunt culpa nulla illum cillum
-                                        fugiat
-                                        legam
-                                        esse veniam culpa fore nisi cillum quid.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-        </section><!-- /Testimonials Section --> --}}
 
         <!-- Team Section -->
         <section id="team" class="team section light-background">
@@ -742,38 +603,11 @@
     <script src="{{ asset('templateWeb/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('templateWeb/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
+    {{-- script filter portfolio & anak perusahaan --}}
+    <script src="{{ asset('templateWeb/assets/js/app.js') }}"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
     <!-- Main JS File -->
     <script src="{{ asset('templateWeb/assets/js/main.js') }}"></script>
-
-    {{-- script filter portfolio & anak perusahaan --}}
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inisialisasi Isotope
-            var iso = new Isotope('.isotope-container', {
-                itemSelector: '.isotope-item',
-                layoutMode: 'masonry'
-            });
-
-            // Ketika filter di klik
-            var filtersElem = document.querySelector('.portfolio-filters');
-            filtersElem.addEventListener('click', function(event) {
-                if (!matchesSelector(event.target, 'li')) {
-                    return;
-                }
-                var filterValue = event.target.getAttribute('data-filter');
-                iso.arrange({
-                    filter: filterValue
-                });
-
-                // Tambahkan class aktif
-                document.querySelectorAll('.portfolio-filters li').forEach(function(el) {
-                    el.classList.remove('filter-active');
-                });
-                event.target.classList.add('filter-active');
-            });
-        });
-    </script>
 </body>
 
 </html>

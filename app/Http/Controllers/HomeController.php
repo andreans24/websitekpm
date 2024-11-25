@@ -31,7 +31,7 @@ class HomeController extends Controller
         $teams = Team::all();
         $portfolios = Portfolio::with('category')->get();
         $sliders = Slider::all();
-        // dd($sliders[0]->title);
+
 
         // Array ikon yang akan digunakan
         $icons = [
@@ -117,12 +117,26 @@ class HomeController extends Controller
 
     public function detailService($id)
     {
-        // $services = Service::all();
+        // Cari layanan berdasarkan ID kategori
+        $category = Categorie::find($id);
+
+        
+        if (!$category || $category->services()->count() === 0) {
+            return redirect()->route('error-page'); // Ganti dengan nama route halaman error
+        }
         $services = Service::find($id);
         $recentPosts = News::inRandomOrder()->take(5)->get();
         $office = Office::first();
         $categories = Categorie::all();
 
         return view('project.detailshome.detailservice', compact('services', 'office', 'categories', 'recentPosts'));
+    }
+
+    public function errorPage()
+    {
+        $recentPosts = News::inRandomOrder()->take(5)->get();
+        $categories = Categorie::all();
+        $office = Office::first();
+        return view('project.detailshome.errors', compact('categories', 'office', 'categories', 'recentPosts'));
     }
 }

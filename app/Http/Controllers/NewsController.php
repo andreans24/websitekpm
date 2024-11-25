@@ -7,7 +7,6 @@ use App\Models\Comment;
 use App\Models\Office;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 class NewsController extends Controller

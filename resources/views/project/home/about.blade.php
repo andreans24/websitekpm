@@ -95,8 +95,7 @@
                                 <h3 class="widget-title">Recent Posts</h3>
                                 @foreach ($recentPosts as $recent)
                                 <div class="post-item image-center">
-                                    <img src="{{ asset('storage/' . $recent->image) }}" alt=""
-                                        class="flex-shrink-0 img-fluid">
+                                    <img src="{{ asset($recent->image) }}" alt="" class="flex-shrink-0 img-fluid">
                                     <div>
                                         <h4><a href="{{ route('detail-news', $recent->id) }}">{{ $recent->title }}</a>
                                         </h4>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class CKEditorController extends Controller
 {
@@ -11,6 +11,7 @@ class CKEditorController extends Controller
     {
         if ($request->hasFile('upload')) {
 
+            // Mendapatkan nama file asli dan ekstensi
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
@@ -19,12 +20,14 @@ class CKEditorController extends Controller
             $date = date('d-m-Y');
             $fileName = $fileName . '_' . $date . '.' . $extension;
 
+            // Menentukan path tujuan di dalam folder public
+            $destinationPath = public_path('service_images/media/' . $fileName);
 
-            // Simpan file ke storage (di bawah 'public/service_images/media')
-            $path = $request->file('upload')->storeAs('service_images/media', $fileName, 'public');
+            // Memindahkan file ke folder public
+            $request->file('upload')->move(public_path('service_images/media'), $fileName);
 
-            // Hasilkan URL yang dapat diakses oleh browser
-            $url = Storage::url($path);
+            // URL yang dapat diakses oleh browser
+            $url = asset('service_images/media/' . $fileName);
 
             // Kembalikan respons ke CKEditor
             return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
@@ -35,6 +38,7 @@ class CKEditorController extends Controller
     {
         if ($request->hasFile('upload')) {
 
+            // Mendapatkan nama file asli dan ekstensi
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
@@ -43,12 +47,14 @@ class CKEditorController extends Controller
             $date = date('d-m-Y');
             $fileName = $fileName . '_' . $date . '.' . $extension;
 
+            // Menentukan path tujuan di dalam folder public
+            $destinationPath = public_path('news_images/content_news/' . $fileName);
 
-            // Simpan file ke storage (di bawah 'public/service_images/media')
-            $path = $request->file('upload')->storeAs('news_images/content_news', $fileName, 'public');
+            // Memindahkan file ke folder public
+            $request->file('upload')->move(public_path('news_images/content_news'), $fileName);
 
-            // Hasilkan URL yang dapat diakses oleh browser
-            $url = Storage::url($path);
+            // URL yang dapat diakses oleh browser
+            $url = asset('news_images/content_news/' . $fileName);
 
             // Kembalikan respons ke CKEditor
             return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
@@ -59,6 +65,7 @@ class CKEditorController extends Controller
     {
         if ($request->hasFile('upload')) {
 
+            // Mendapatkan nama file asli dan ekstensi
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
@@ -67,12 +74,14 @@ class CKEditorController extends Controller
             $date = date('d-m-Y');
             $fileName = $fileName . '_' . $date . '.' . $extension;
 
+            // Menentukan path tujuan di dalam folder public
+            $destinationPath = public_path('portfolio_images/content_portfolio/' . $fileName);
 
-            // Simpan file ke storage (di bawah 'public/service_images/media')
-            $path = $request->file('upload')->storeAs('portfolio_images/content_portfolio', $fileName, 'public');
+            // Memindahkan file ke folder public
+            $request->file('upload')->move(public_path('portfolio_images/content_portfolio'), $fileName);
 
-            // Hasilkan URL yang dapat diakses oleh browser
-            $url = Storage::url($path);
+            // URL yang dapat diakses oleh browser
+            $url = asset('portfolio_images/content_portfolio/' . $fileName);
 
             // Kembalikan respons ke CKEditor
             return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);

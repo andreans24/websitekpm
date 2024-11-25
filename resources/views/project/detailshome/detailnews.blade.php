@@ -277,17 +277,15 @@
                         <div class="tags-widget widget-item">
                             <h3 class="widget-title">Tags</h3>
                             <ul>
-                                <li><a href="#">App</a></li>
-                                <li><a href="#">IT</a></li>
+                                <li><a href="#">Simpan Pinjam Kopegmar</a></li>
+                                <li><a href="#">Koperasi Pegawai Maritim</a></li>
                                 <li><a href="#">Business</a></li>
-                                <li><a href="#">Mac</a></li>
-                                <li><a href="#">Design</a></li>
+                                <li><a href="#">Jasa Tenaga Kerja Kopegmar</a></li>
+                                <li><a href="#">Outsourcing Kopegmar</a></li>
                                 <li><a href="#">Office</a></li>
                                 <li><a href="#">Creative</a></li>
-                                <li><a href="#">Studio</a></li>
-                                <li><a href="#">Smart</a></li>
-                                <li><a href="#">Tips</a></li>
-                                <li><a href="#">Marketing</a></li>
+                                <li><a href="#">Teknik Sipil</a></li>
+                                <li><a href="#">Rupa - Rupa Usaha</a></li>
                             </ul>
                         </div>
                         <!--/Tags Widget -->

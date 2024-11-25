@@ -7,7 +7,7 @@ use App\Models\Service;
 use App\Models\Categorie;
 use App\Models\Office;
 use App\Models\News;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ServiceController extends Controller
 {

@@ -107,6 +107,9 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
     Route::get('/services', [HomeController::class, 'services'])->name('services');
     Route::get('/news', [HomeController::class, 'news'])->name('news');
 
+    // Error Page
+    Route::get('/error', [HomeController::class, 'errorPage'])->name('error-page');
+
     // Front End Details
     Route::get('news/{id}', [HomeController::class, 'detailsNews'])->name('detail-news'); // Route untuk menampilkan detail berita beserta komentar
     Route::get('portfolio/{id}', [HomeController::class, 'detailPortfolio'])->name('detail-portfolio');

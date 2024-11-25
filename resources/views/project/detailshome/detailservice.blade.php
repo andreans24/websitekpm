@@ -123,8 +123,7 @@
 
 
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-                        @if ($services)
-                        <img src="{{ asset($services->images) }}" alt="{{ $services->title }}"
+                        @if ($services) <img src="{{ asset($services->images) }}" alt="{{ $services->title }}"
                             class="img-fluid services-img">
                         <h3>{{ $services->title }}</h3>
                         @endif
