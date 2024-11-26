@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>KOPEGMAR | About</title>
+    <title>KOPEGMAR | About Kopegmar</title>
     <meta name="description"
-        content="Kami menyediakan layanan koperasi terbaik untuk Anggota. Temukan informasi lengkap tentang produk dan layanan kami di sini.">
+        content="KOPEGMAR menyediakan layanan terbaik untuk Anggota, termasuk simpan pinjam dan jasa tenaga kerja. Temukan lebih banyak tentang kami di sini.">
     <meta name="keywords" content="KOPEGMAR Tanjung Priok, Simpan Pinjam, Rupa Rupa Usaha, Jasa Tenaga Kerja">
 
     <!-- Favicons -->
