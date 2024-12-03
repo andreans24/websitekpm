@@ -8,7 +8,7 @@
     </h3>
 </div>
 
-<div class="col-8 grid-margin stretch-card">
+<div class="col-lg-10 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
