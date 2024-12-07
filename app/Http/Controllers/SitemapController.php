@@ -26,10 +26,9 @@ class SitemapController extends Controller
         $sitemap->add(Url::create('/services')->setPriority(0.8)->setChangeFrequency('weekly'));
         $sitemap->add(Url::create('/news')->setPriority(0.8)->setChangeFrequency('weekly'));
 
-        // Menambahkan URL untuk layanan (service) dari database
         $services = Service::all(); // Ambil semua layanan dari database
         foreach ($services as $service) {
-            $sitemap->add(Url::create("/service/{$service->slug}")
+            $sitemap->add(Url::create("/service/{$service->category->slug}") // Menggunakan category slug
                 ->setPriority(0.7)
                 ->setChangeFrequency('monthly')
                 ->setLastModificationDate($service->updated_at)
@@ -38,14 +37,21 @@ class SitemapController extends Controller
 
         $portfolios = Portfolio::all(); // Ambil semua portfolio dari database
         foreach ($portfolios as $portfolio) {
-            $sitemap->add(Url::create("/portfolio/{$portfolio->id}/{$portfolio->category->slug}")
+            $sitemap->add(Url::create("/portfolio/{$portfolio->id}/{$portfolio->category->slug}") // Menggunakan id dan category slug
                 ->setPriority(0.7)
                 ->setChangeFrequency('monthly')
                 ->setLastModificationDate($portfolio->updated_at)
             );
         }
 
-        
+        $newsItems = News::all(); // Ambil semua berita dari database
+        foreach ($newsItems as $news) {
+            $sitemap->add(Url::create("/news/{$news->id}/{$news->slug}") // Menggunakan id dan slug
+                ->setPriority(0.8)
+                ->setChangeFrequency('weekly')
+                ->setLastModificationDate($news->updated_at)
+            );
+        }
 
         // Simpan file sitemap.xml di public folder
         $sitemap->writeToFile(public_path('sitemap.xml'));
