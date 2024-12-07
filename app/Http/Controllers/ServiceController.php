@@ -51,12 +51,6 @@ class ServiceController extends Controller
         return redirect()->route('serv')->with('success', 'Service created successfully');
     }
 
-
-    // public function show(Service $service)
-    //     {
-    //         return view('project.service.show', compact('service'));
-    //     }
-
     public function edit(Service $service)
     {
         $categories = Categorie::all();
@@ -87,6 +81,7 @@ class ServiceController extends Controller
 
             // Simpan langsung ke folder public/service_images
             $destinationPath = public_path('service_images');
+
             $file->move($destinationPath, $fileName);
 
             // Simpan path gambar baru ke database

@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>KOPEGMAR | Service Kopegmar</title>
+    <title>KOPEGMAR | Service Details Kopegmar</title>
     <meta name="description"
-        content="KOPEGMAR menyediakan layanan terbaik untuk Anggota, termasuk simpan pinjam dan jasa tenaga kerja. Temukan lebih banyak tentang kami di sini.">
-    <meta name="keywords" content="KOPEGMAR Tanjung Priok, Simpan Pinjam, Rupa Rupa Usaha, Jasa Tenaga Kerja">
+        content="KOPEGMAR menyediakan layanan simpan pinjam dan unit usaha untuk pegawai maritim Tanjung Priok. Temukan layanan unggulan kami di sini!">
+    <meta name="keywords"
+        content="KOPEGMAR, koperasi, pegawai maritim, simpan pinjam, unit usaha, Tanjung Priok, Jakarta Utara">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:url" content="{{ $ogUrl }}">
 
     <!-- Favicons -->
-    <link href="{{ asset('templateWeb/assets/img/favicon2.png') }}" rel="icon">
+    <link href="{{ asset('templateWeb/assets/img/favicon.png') }}" rel="icon" type="image/png" sizes="32x32">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -22,15 +31,13 @@
     <!-- Vendor CSS Files -->
     <link href="{{ asset('templateWeb/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Main CSS File -->
     <link href="{{ asset('templateWeb/assets/css/main.css') }}" rel="stylesheet">
-
 </head>
 
 <body class="service-details-page">
@@ -41,8 +48,8 @@
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="{{ asset('images/kpm2.png') }}" alt="" style="width: 70px; height: auto;">
-                        <img src="{{ asset('images/textkpm.png') }}" alt="" style="width: 150px; height: auto;">
+                        <img src="{{ asset('images/kpm2.png') }}" alt="kopegmar" style="width: 70px; height: auto;">
+                        <img src="{{ asset('images/textkpm.png') }}" alt="kopegmar" style="width: 150px; height: auto;">
                     </div>
                 </h1>
             </a>
@@ -56,14 +63,13 @@
                         <ul>
                             @foreach ($categories as $category)
                             <li>
-                                <a href="{{ route('detail-service', $category->id) }}">
+                                <a href="{{ route('detail-service', $category->slug) }}">
                                     {{ $category->categories }} </a>
                             </li>
                             @endforeach
                         </ul>
                     </li>
                     <li><a href="{{ route('news') }}">News</a></li>
-                    {{-- <li><a href="#">Blog</a></li> --}}
                     <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -78,8 +84,8 @@
         <div class="page-title dark-background" data-aos="fade"
             style="background-image: url({{ asset('templateWeb/assets/img/page-title-bg.jpg') }});">
             <div class="container position-relative">
-                <h1>Service Details</h1>
-                <p>{{ $services->categorie->categories }}</p>
+                <h1>Service Detail</h1>
+                <p>{{ $services->categorie->slug }}</p>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ route('home') }}">Home</a></li>
@@ -97,8 +103,8 @@
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="services-list">
                             @foreach ($categories as $category)
-                            <a href="{{ route('detail-service', $category->id) }}"
-                                class="{{ request()->id == $category->id ? 'active' : '' }}">
+                            <a href="{{ route('detail-service', $category->slug) }}"
+                                class="{{ request()->slug == $category->slug ? 'active' : '' }}">
                                 {{ $category->categories }} </a>
                             @endforeach
                             <!-- Recent Posts Widget -->
@@ -108,7 +114,9 @@
                                 <div class="post-item image-center">
                                     <img src="{{ asset($recent->image) }}" alt="" class="flex-shrink-0 img-fluid">
                                     <div>
-                                        <h4><a href="{{ route('detail-news', $recent->id) }}">{{ $recent->title }}</a>
+                                        <h4><a
+                                                href="{{ route('detail-news', ['id' => $recent->id, 'title' => Str::slug($recent->title, '-')]) }}">{{
+                                                $recent->title }}</a>
                                         </h4>
                                         <time datetime="{{ $recent->created_at }}">{{ $recent->created_at->format('M d,
                                             Y') }}</time>
@@ -189,7 +197,7 @@
                     <ul>
                         @foreach ($categories as $category)
                         <li>
-                            <a href="{{ route('detail-service', $category->id) }}">
+                            <a href="{{ route('detail-service', $category->slug) }}">
                                 {{ $category->categories }} </a>
                         </li>
                         @endforeach
@@ -229,7 +237,8 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('templateWeb/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('templateWeb/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('templateWeb/assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('templateWeb/assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('templateWeb/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>

@@ -13,6 +13,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,11 +112,12 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
     Route::get('/error', [HomeController::class, 'errorPage'])->name('error-page');
 
     // Front End Details
-    Route::get('news/{id}', [HomeController::class, 'detailsNews'])->name('detail-news'); // Route untuk menampilkan detail berita beserta komentar
-    Route::get('portfolio/{id}', [HomeController::class, 'detailPortfolio'])->name('detail-portfolio');
-    ROute::get('service/{id}', [HomeController::class, 'detailService'])->name('detail-service');
+    Route::get('news/{id}/{title}', [HomeController::class, 'detailsNews'])->name('detail-news');
+    Route::get('portfolio/{id}/{category:slug}', [HomeController::class, 'detailPortfolio'])->name('detail-portfolio');
+    Route::get('service/{category:slug}', [HomeController::class, 'detailService'])->name('detail-service');
 
     // Comment simpan
     Route::post('news/{news_id}/comments', [CommentController::class, 'store'])->name('comments-store');
-    
-    
+
+    // Sitemap
+    Route::get('/generate-sitemap', [SitemapController::class, 'generateSitemap']);

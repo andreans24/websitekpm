@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>KOPEGMAR</title>
-    <meta name="description" content="KOPEGMAR . Koperasi Pegawai Maritim . Tanjung Priok . kopegmartanjungpriok">
-    <meta name="keywords" content="KOPEGMAR Tanjung Priok, Simpan Pinjam, Rupa Rupa Usaha, Jasa Tenaga Kerja">
+    <meta name="description"
+        content="KOPEGMAR menyediakan layanan simpan pinjam dan unit usaha untuk pegawai maritim Tanjung Priok. Temukan layanan unggulan kami di sini!">
+    <meta name="keywords"
+        content="KOPEGMAR, koperasi, pegawai maritim, simpan pinjam, unit usaha, Tanjung Priok, Jakarta Utara">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:url" content="{{ $ogUrl }}">
 
     <!-- Favicons -->
-    <link href="{{ asset('templateWeb/assets/img/favicon2.png') }}" rel="icon">
+    <link href="{{ asset('templateWeb/assets/img/favicon.png') }}" rel="icon" type="image/png" sizes="32x32">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -21,8 +31,7 @@
     <!-- Vendor CSS Files -->
     <link href="{{ asset('templateWeb/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
@@ -38,8 +47,9 @@
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="{{ asset('images/kpm2.png') }}" alt="" style="width: 70px; height: auto;">
-                        <img src="{{ asset('images/textkpm.png') }}" alt="" style="width: 150px; height: auto;">
+                        <img src="{{ asset('images/kpm2.png') }}" alt="logokopegmar" style="width: 70px; height: auto;">
+                        <img src="{{ asset('images/textkpm.png') }}" alt="textkopegmar"
+                            style="width: 150px; height: auto;">
                     </div>
                 </h1>
             </a>
@@ -52,7 +62,7 @@
                         <ul>
                             @forelse ($categories as $category)
                             <li>
-                                <a href="{{ route('detail-service', $category->id) }}">
+                                <a href="{{ route('detail-service', $category->slug) }}">
                                     {{ $category->categories }}
                                 </a>
                             </li>
@@ -60,12 +70,6 @@
                             <li><a href="{{ route('error-page') }}">Kategori tidak tersedia</a></li> {{-- Tautan ke
                             halaman error --}}
                             @endforelse
-                            {{-- @foreach ($categories as $category)
-                            <li>
-                                <a href="{{ route('detail-service', $category->id) }}">
-                                    {{ $category->categories }} </a>
-                            </li>
-                            @endforeach --}}
                         </ul>
                     </li>
                     <li><a href="{{ route('news') }}">News</a></li>
@@ -121,7 +125,7 @@
                             <p class="description-ellipsis">
                                 {{ strip_tags(html_entity_decode($service->description)) }}
                             </p>
-                            <a href="{{ route('detail-service', ['id' => $service->id]) }}"
+                            <a href="{{ route('detail-service', $service->categorie->slug) }}"
                                 class="readmore stretched-link"><span>Learn
                                     More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
@@ -166,15 +170,15 @@
                     <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
                         <div class="row gy-4">
                             <div class="col-lg-6">
-                                <img src="{{ asset('images/1.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('images/1.jpg') }}" class="img-fluid" alt="Kopegmar Project1">
                             </div>
                             <div class="col-lg-6">
                                 <div class="row gy-4">
                                     <div class="col-lg-12">
-                                        <img src="{{ 'images/2.jpg' }}" class="img-fluid" alt="">
+                                        <img src="{{ 'images/2.jpg' }}" class="img-fluid" alt="Kopegmar Project2">
                                     </div>
                                     <div class="col-lg-12">
-                                        <img src="{{ 'images/3.png' }}" class="img-fluid" alt="">
+                                        <img src="{{ 'images/3.png' }}" class="img-fluid" alt="Kopegmar Project3">
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +198,8 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-6 mx-2">
                         <div class="stats-item text-center w-100 h-100">
-                            <img src="{{ asset('images/medal.png') }}" alt="" class="img-fluid custom-img mb-3">
+                            <img src="{{ asset('images/medal.png') }}" alt="Penghargaan1"
+                                class="img-fluid custom-img mb-3">
                             <p class="text-center">Vendor Terbaik Kategori Nilai Terbanyak Tahun 2021 dari PT Pelindo
                                 (Persero)</p>
                         </div>
@@ -202,28 +207,32 @@
 
                     <div class="col-lg-auto col-md-4 col-sm-6 mx-2">
                         <div class="stats-item text-center w-100 h-100">
-                            <img src="{{ asset('images/medal.png') }}" alt="" class="img-fluid custom-img mb-3">
+                            <img src="{{ asset('images/medal.png') }}" alt="Penghargaan2"
+                                class="img-fluid custom-img mb-3">
                             <p class="text-center">Vendor Terbaik Tahun 2021 dari KSO TPK Koja</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-auto col-md-4 col-sm-6 mx-2">
                         <div class="stats-item text-center w-100 h-100">
-                            <img src="{{ asset('images/medal.png') }}" alt="" class="img-fluid custom-img mb-3">
+                            <img src="{{ asset('images/medal.png') }}" alt="Penghargaan3"
+                                class="img-fluid custom-img mb-3">
                             <p class="text-center">Vendor Terbaik Tahun 2021 dari KSO TPK Koja</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-auto col-md-4 col-sm-6 mx-2">
                         <div class="stats-item text-center w-100 h-100">
-                            <img src="{{ asset('images/medal.png') }}" alt="" class="img-fluid custom-img mb-3">
+                            <img src="{{ asset('images/medal.png') }}" alt="Penghargaan4"
+                                class="img-fluid custom-img mb-3">
                             <p class="text-center">100 Besar Koperasi Terbaik Indonesia Tahun 2015</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-auto col-md-4 col-sm-6 mx-2">
                         <div class="stats-item text-center w-100 h-100">
-                            <img src="{{ asset('images/medal.png') }}" alt="" class="img-fluid custom-img mb-3">
+                            <img src="{{ asset('images/medal.png') }}" alt="Penghargaan5"
+                                class="img-fluid custom-img mb-3">
                             <p class="text-center">Koperasi Berprestasi Tahun 2011 dari Menteri Koperasi dan UMKM RI
                             </p>
                         </div>
@@ -247,7 +256,7 @@
                         <div class="service-item d-flex position-relative h-100">
                             <i class="{{ $service->icon }} icon flex-shrink-0"></i>
                             <div>
-                                <h4 class="title"><a href="{{ route('detail-service', ['id' => $service->id]) }}"
+                                <h4 class="title"><a href="{{ route('detail-service', $service->categorie->slug) }}"
                                         class="stretched-link">{{ $service->title }}</a></h4>
                                 <p class="description">
                                     {{ strip_tags(html_entity_decode(Str::limit($service->description, 100))) }}
@@ -272,83 +281,83 @@
                         <div class="slide-track">
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/1.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 1" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/2.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 2" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/3.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 3" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/4.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 4" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/5.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 5" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/6.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 6" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/7.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 7" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/8.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 8" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/9.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 9" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/10.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 10" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/11.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 11" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/12.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 12" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/13.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 13" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/14.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 14" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/15.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 15" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/16.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 16" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/17.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 17" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/18.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 18" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/19.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 19" />
                             </div>
                             <div class="slide">
                                 <img src="{{ asset('templateWeb/assets/img/client/20.png') }}" height="100" width="250"
-                                    alt="" />
+                                    alt="Logo Perusahaan 20" />
                             </div>
                         </div>
                     </div>
@@ -363,7 +372,7 @@
         <section id="portfolio" class="portfolio section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2> Anak Perusahaan & Portfolio Kopegmar TG Priok</h2>
+                <h2> Anak Perusahaan</h2>
                 {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
             </div><!-- End Section Title -->
 
@@ -397,8 +406,8 @@
                                 <a href=" {{ asset($portfolio->image1) }}" title="{{ $portfolio->title }}"
                                     data-gallery="portfolio-gallery-{{ $portfolio->id }}"
                                     class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                <a href="{{ route('detail-portfolio', ['id' => $portfolio->id]) }}" title="More Details"
-                                    class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                <a href="{{ route('detail-portfolio', ['id' => $portfolio->id, 'category' => $portfolio->category->slug]) }}"
+                                    title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
                         @endforeach
@@ -555,7 +564,7 @@
                     <ul>
                         @foreach ($categories as $category)
                         <li>
-                            <a href="{{ route('detail-service', $category->id) }}">
+                            <a href="{{ route('detail-service', $category->slug) }}">
                                 {{ $category->categories }} </a>
                         </li>
                         @endforeach
@@ -593,7 +602,8 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('templateWeb/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('templateWeb/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('templateWeb/assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('templateWeb/assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('templateWeb/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>

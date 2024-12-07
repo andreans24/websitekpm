@@ -10,6 +10,11 @@ class Categorie extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'categories', // Nama kategori
+        'slug',       // Slug kategori
+    ];
+
     public function services()
     {
         return $this->hasMany(Service::class);

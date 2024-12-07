@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>KOPEGMAR | Contact Kopegmar</title>
-    <meta name="description" content="KOPEGMAR Kontak.">
-    <meta name="keywords" content="KOPEGMAR Tanjung Priok, Simpan Pinjam, Rupa Rupa Usaha, Jasa Tenaga Kerja">
+    <meta name="description"
+        content="KOPEGMAR menyediakan layanan simpan pinjam dan unit usaha untuk pegawai maritim Tanjung Priok. Temukan layanan unggulan kami di sini!">
+    <meta name="keywords"
+        content="KOPEGMAR, koperasi, pegawai maritim, simpan pinjam, unit usaha, Tanjung Priok, Jakarta Utara">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:url" content="{{ $ogUrl }}">
 
     <!-- Favicons -->
-    <link href="{{ asset('templateWeb/assets/img/favicon2.png') }}" rel="icon">
+    <link href="{{ asset('templateWeb/assets/img/favicon.png') }}" rel="icon" type="image/png" sizes="32x32">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -21,6 +30,7 @@
     <!-- Vendor CSS Files -->
     <link href="{{ asset('templateWeb/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
@@ -52,7 +62,7 @@
                         <ul>
                             @foreach ($categories as $category)
                             <li>
-                                <a href="{{ route('detail-service', $category->id) }}">
+                                <a href="{{ route('detail-service', $category->slug) }}">
                                     {{ $category->categories }} </a>
                             </li>
                             @endforeach
@@ -192,7 +202,7 @@
                     <ul>
                         @foreach ($categories as $category)
                         <li>
-                            <a href="{{ route('detail-service', $category->id) }}">
+                            <a href="{{ route('detail-service', $category->slug) }}">
                                 {{ $category->categories }} </a>
                         </li>
                         @endforeach
@@ -228,7 +238,8 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('templateWeb/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('templateWeb/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('templateWeb/assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('templateWeb/assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('templateWeb/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>

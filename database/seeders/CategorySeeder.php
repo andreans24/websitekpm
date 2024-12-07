@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
@@ -13,14 +14,25 @@ class CategorySeeder extends Seeder
      *
      * @return void
      */
+    // public function run()
+    // {
+        
+    //     DB::table('categories')->insert([
+    //         ['categories' => 'SIMPAN PINJAM', 'created_at' => now(), 'updated_at' => now()],
+    //         ['categories' => 'JASA TENAGA KERJA', 'created_at' => now(), 'updated_at' => now()],
+    //         ['categories' => 'RUPA - RUPA USAHA', 'created_at' => now(), 'updated_at' => now()],
+    //         ['categories' => 'KENAPA KAMI', 'created_at' => now(), 'updated_at' => now()],
+    //     ]);
+    // }
+
     public function run()
     {
-        
-        DB::table('categories')->insert([
-            ['categories' => 'SIMPAN PINJAM', 'created_at' => now(), 'updated_at' => now()],
-            ['categories' => 'JASA TENAGA KERJA', 'created_at' => now(), 'updated_at' => now()],
-            ['categories' => 'RUPA - RUPA USAHA', 'created_at' => now(), 'updated_at' => now()],
-            ['categories' => 'KENAPA KAMI', 'created_at' => now(), 'updated_at' => now()],
-        ]);
+        $categories = DB::table('categories')->get();
+
+        foreach ($categories as $category) {
+            DB::table('categories')
+                ->where('id', $category->id)
+                ->update(['slug' => Str::slug($category->categories, '-')]);
+        }
     }
 }

@@ -23,14 +23,19 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="exampleSelectGender">Category Id</label>
-                    <select class="form-select" id="exampleSelectGender" name="categorie_id">
+                    <label for="categorie_id">Category Id</label>
+                    <select class="form-select" id="categorie_id" name="categorie_id">
                         @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ $category->id == $service->categorie_id ? 'selected' : ''
-                            }}>
+                        <option value="{{ $category->id }}" {{ $category->id == $service->categorie_id ? 'selected' :
+                            ''}} data-slug="{{ $category->slug }}">
                             {{ $category->categories }} </option>
                         @endforeach
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="slug">Slug</label>
+                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug"
+                        value="{{ $service->slug }}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputName1">Title</label>
@@ -54,7 +59,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleTextarea1">Description</label>
+                    <label for="description">Description</label>
                     <textarea class="form-control" id="description" name="description"
                         rows="5">{{ $service->description }} </textarea>
                 </div>
@@ -75,5 +80,11 @@
                 }
             })
             .catch(error => {});
+            // Populate slug based on selected category
+            document.getElementById('categorie_id').addEventListener('change', function () {
+                const selectedOption = this.options[this.selectedIndex];
+                const slug = selectedOption.getAttribute('data-slug');
+                document.getElementById('slug').value = slug;
+            });
 </script>
 @endsection

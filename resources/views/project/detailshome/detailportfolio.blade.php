@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>KOPEGMAR | Portfolio Details Kopegmar</title>
+    <title>KOPEGMAR | Details Kopegmar</title>
     <meta name="description"
-        content="KOPEGMAR menyediakan layanan terbaik untuk Anggota, termasuk simpan pinjam dan jasa tenaga kerja. Temukan lebih banyak tentang kami di sini.">
-    <meta name="keywords" content="KOPEGMAR Tanjung Priok, Simpan Pinjam, Rupa Rupa Usaha, Jasa Tenaga Kerja">
+        content="KOPEGMAR menyediakan layanan simpan pinjam dan unit usaha untuk pegawai maritim Tanjung Priok. Temukan layanan unggulan kami di sini!">
+    <meta name="keywords"
+        content="KOPEGMAR, koperasi, pegawai maritim, simpan pinjam, unit usaha, Tanjung Priok, Jakarta Utara">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:url" content="{{ $ogUrl }}">
 
     <!-- Favicons -->
-    <link href="{{ asset('templateWeb/assets/img/favicon2.png') }}" rel="icon">
+    <link href="{{ asset('templateWeb/assets/img/favicon.png') }}" rel="icon" type="image/png" sizes="32x32">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -22,8 +31,7 @@
     <!-- Vendor CSS Files -->
     <link href="{{ asset('templateWeb/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
@@ -38,8 +46,8 @@
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="{{ asset('images/kpm2.png') }}" alt="" style="width: 70px; height: auto;">
-                        <img src="{{ asset('images/textkpm.png') }}" alt="" style="width: 150px; height: auto;">
+                        <img src="{{ asset('images/kpm2.png') }}" alt="kopegmar" style="width: 70px; height: auto;">
+                        <img src="{{ asset('images/textkpm.png') }}" alt="kopegmar" style="width: 150px; height: auto;">
                     </div>
                 </h1>
             </a>
@@ -50,9 +58,12 @@
                     <li class="dropdown"><a href="#"><span>Services</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="{{ route('services') }}">Simpan Pinjam</a></li>
-                            <li><a href="{{ route('services') }}">Pengelolaan Jasa Tenaga Kerja</a></li>
-                            <li><a href="{{ route('services') }}">Rupa - Rupa Usaha</a></li>
+                            @foreach ($categories as $category)
+                            <li>
+                                <a href="{{ route('detail-service', $category->slug) }}">
+                                    {{ $category->categories }} </a>
+                            </li>
+                            @endforeach
                         </ul>
                     </li>
                     <li><a href="{{ route('news') }}">News</a></li>
@@ -69,7 +80,7 @@
         <div class="page-title dark-background" data-aos="fade"
             style="background-image: url('{{ asset('templateWeb/assets/img/page-title-bg.jpg') }}');">
             <div class="container position-relative">
-                <h1>Portfolio Details</h1>
+                <h1>Details</h1>
                 <p>{{ $portfolios->title }}</p>
                 <nav class="breadcrumbs">
                     <ol>
@@ -174,17 +185,17 @@
                     </ul>
                 </div>
 
-                {{-- <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
+                <div class="col-lg-2 col-md-3 footer-links">
+                    <h4>Layanan Kami</h4>
                     <ul>
                         @foreach ($categories as $category)
                         <li>
-                            <a href="{{ route('detail-service', $category->id) }}">
+                            <a href="{{ route('detail-service', $category->slug) }}">
                                 {{ $category->categories }} </a>
                         </li>
                         @endforeach
                     </ul>
-                </div> --}}
+                </div>
 
                 <div class="col-lg-4 col-md-12 footer-newsletter">
                     <div class="logo">
@@ -218,7 +229,8 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('templateWeb/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('templateWeb/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('templateWeb/assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('templateWeb/assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('templateWeb/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>

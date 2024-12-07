@@ -17,6 +17,4 @@ class PortfolioCategories extends Model
     {
         return $this->hasMany(Portfolio::class, 'category_id');
     }
-
-
 }
