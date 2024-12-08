@@ -90,9 +90,11 @@
                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                     <img src="{{ asset($slider->image) }}" alt="Slide {{ $index + 1 }}">
                     <div class="carousel-container">
-                        <h2>{{ $slider->title }}</h2>
-                        <p>{{ $slider->description }}</p>
-                        <a href="#featured-services" class="btn-get-started">Get Started</a>
+                        <h1>{{ $slider->title }}</h1>
+                        <h3 style="color: #29ee85; text-shadow: -2px 2px 4px rgba(255, 255, 255, 0.7);">
+                            {{
+                            $slider->description }}</h2>
+                            <a href="#featured-services" class="btn-get-started">Get Started</a>
                     </div>
                 </div>
                 @endforeach
@@ -140,18 +142,28 @@
         <section id="about" class="about section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Tentang Kami KOPEGMAR</h2>
+                <h2>SEJARAH SINGKAT</h2>
                 @if ($about)
                 <p style="text-align:justify"> {!! nl2br(e($about->about_me)) !!} </p>
                 @endif
                 <br>
             </div><!-- End Section Title -->
 
+            {{-- <div class="container section-title" data-aos="fade-up">
+                <h2>Pengembangan KOPEGMAR</h2>
+                <br>
+                <p>Pondasi ini memudahkan Kopegmar Tanjung Priok sebagai lembaga Koperasi untuk tanggap dalam melayani
+                    anggotanya (meningkatkan kesejahteraan) dan melayani pasar (ekspansi pasar). Sejalan dengan
+                    perkembangan industri kepelabuhanan dan lingkungan industri ini, Kopegmar Tanjung priok terus
+                    dikembangkan menjadi pendukung yang handal bagi tumbuh dan berkembangnya industri kepelabuahanan.
+                </p>
+            </div><!-- End Section Title --> --}}
+
             <div class="container">
                 <div class="row gy-4">
                     <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
                         {{-- <p class="who-we-are">Who We Are</p> --}}
-                        <h3>VISI & MISI</h3>
+                        {{-- <h3>VISI & MISI</h3> --}}
                         @if ($about)
                         @php
                         // Mengganti strip dengan ikon check-circle
@@ -191,7 +203,11 @@
         <!-- Stats Section -->
         <section id="stats" class="stats section light-background">
             <div class="container section-title" data-aos="fade-up">
-                <h2>Penghargaan</h2>
+                <h2>PENGHARGAAN</h2>
+                <h6><strong>Kopegmar Tanjung Priok</strong> yang saat ini telah mencapai Usia <strong>45 tahun</strong>
+                    telah mengantongi
+                    berbagai
+                    penghargaan, antara lain</h6>
             </div>
             <div class="container" data-aos="fade-up" data-aos-delay="100">
                 <div class="row justify-content-center gy-2 flex-wrap">
@@ -245,8 +261,13 @@
         <section id="services" class="services section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Layanan Kami</h2>
-                <p>Kami Siap Melayani Anda</p>
+                <h2>PRODUK LAYANAN</h2>
+                <h6><strong> Kopegmar Tanjung Priok </strong> telah merintis dan mengembangkan beberapa unit usaha untuk
+                    menopang
+                    kesejahteraan anggotanya, antara lain : <strong>Simpan Pinjam, Pengelolaan Kantin, Perdagangan,
+                        Pengadaan Pemborongan, Pengelolaan Rumah Susun, Sentra Kredit, Penambangan Batu, Jasa Tenaga
+                        Kerja,
+                        dan Angkutan Petikemas.</strong></h6>
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -275,7 +296,10 @@
             <div class="row justify-content-center">
                 <div class="col-xl-8">
                     <div class="container section-title">
-                        <h2 style="color: rgb(255, 255, 255);">Klien Kami</h2>
+                        <h2 style="color: rgb(255, 255, 255);">KLIEN KAMI</h2>
+                        <h6>Kepercayaan yang diberikan pihak klien memang sangat
+                            besar kepada Kopegmar Tanjung Priok dengan produk layanan yang kami tawarkan. Berikut adalah
+                            beberapa klien yang telah bekerjasama dengan Kopegmar Tanjung Priok.</h6>
                     </div>
                     <div class="slider">
                         <div class="slide-track">
@@ -373,7 +397,8 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2> Anak Perusahaan</h2>
-                {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
+                <h6>Pengembangan dan inovasi terus dilakukan, salah satunya dengan mendirikan 5(lima) anak usaha yaitu:
+                </h6>
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -421,7 +446,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Team</h2>
-                <p style="color: black">PENGURUS KOPEGMAR </p>
+                <h6 style="color: black">Pengurus KOPEGMAR </h6>
             </div><!-- End Section Title -->
             <div class="container">
                 <div class="row gy-4 flex-nowrap overflow-auto">
