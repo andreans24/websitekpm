@@ -101,7 +101,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
     // Front End
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/Kopegmar-Website', [HomeController::class, 'index'])->name('home');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::get('/portfolio', [HomeController::class, 'portfolio'])->name('portfolio');

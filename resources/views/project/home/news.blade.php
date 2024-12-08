@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>KOPEGMAR | News Kopegmar</title>
+    <title>Kopegmar Website - News</title>
     <meta name="description"
         content="KOPEGMAR menyediakan layanan simpan pinjam dan unit usaha untuk pegawai maritim Tanjung Priok. Temukan layanan unggulan kami di sini!">
     <meta name="keywords"
@@ -48,8 +48,10 @@
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="{{ asset('images/kpm2.png') }}" alt="kopegmar" style="width: 70px; height: auto;">
-                        <img src="{{ asset('images/textkpm.png') }}" alt="kopegmar" style="width: 150px; height: auto;">
+                        <img src="{{ asset('images/kpm2.png') }}" alt="Kopegmar Website Logo"
+                            style="width: 70px; height: auto;">
+                        <img src="{{ asset('images/textkpm.png') }}" alt="Kopegmar Website Logo ."
+                            style="width: 150px; height: auto;">
                     </div>
                 </h1>
             </a>
