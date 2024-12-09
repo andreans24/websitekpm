@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Kopegmar Website - News</title>
+    <title>KOPEGMAR Website - News</title>
     <meta name="description"
         content="KOPEGMAR menyediakan layanan simpan pinjam dan unit usaha untuk pegawai maritim Tanjung Priok. Temukan layanan unggulan kami di sini!">
     <meta name="keywords"
@@ -87,7 +87,7 @@
             style="background-image: url(templateWeb/assets/img/page-title-bg.jpg);">
             <div class="container position-relative">
                 <h1>News List</h1>
-                <p>NEWS KOPEGMAR</p>
+                <p>KOPEGMAR NEWS</p>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ route('home') }}">Home</a></li>

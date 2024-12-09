@@ -851,8 +851,8 @@ section,
   justify-content: center;
   align-items: center;
   z-index: 2;
-  bottom: 30%;
-  right: 10%;
+  bottom: 25%;
+  right: 0%;
   transform: translateX(-20%);
   -webkit-transform: translateX(-20%);
   -moz-transform: translateX(-20%);
@@ -862,15 +862,17 @@ section,
 
 .hero h1 {
   margin-bottom: 10px;
-  font-size: 48px;
+  /* font-size: 48px; */
   font-weight:800;
   animation: fadeInDown 1s both;
-  white-space: nowrap;
+  /* white-space: nowrap; */
+  font-size: clamp(24px, 5vw,38px);
 }
 
 @media (max-width: 768px) {
   .hero h1 {
-    font-size: 30px;
+    /* font-size: 30px; */
+    font-size: clamp(24px, 5vw, 38px);
   }
 }
 
