@@ -35,6 +35,13 @@
     <link href="{{ asset('templateWeb/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('templateWeb/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        .leaflet-control-attribution a[href="https://leafletjs.com"] {
+            display: none !important;
+        }
+    </style>
+
     <!-- Main CSS File -->
     <link href="{{ asset('templateWeb/assets/css/main.css') }}" rel="stylesheet">
 </head>
@@ -47,9 +54,9 @@
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="{{ asset('images/kpm2.png') }}" alt="Kopegmar Website Logo"
+                        <img src="{{ asset('images/kpm2.png') }}" alt="Kopegmar-Website-Logo"
                             style="width: 70px; height: auto;">
-                        <img src="{{ asset('images/textkpm.png') }}" alt="Kopegmar Website Logo ."
+                        <img src="{{ asset('images/textkpm.png') }}" alt="Kopegmar-Website-Logo ."
                             style="width: 150px; height: auto;">
                     </div>
                 </h1>
@@ -95,6 +102,12 @@
                 </nav>
             </div>
         </div><!-- End Page Title -->
+
+        <!-- Peta Lokasi -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Lokasi Kami</h2>
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </div>
 
         <!-- Starter Section Section -->
         <section id="contact" class="contact section">
@@ -213,7 +226,7 @@
 
                 <div class="col-lg-4 col-md-12 footer-newsletter">
                     <div class="logo">
-                        <img src="{{ asset('images/KPM.png') }}" alt="Logo" class="img-fluid mb-3"
+                        <img src="{{ asset('images/KPM.png') }}" alt="logo-kopegmar" class="img-fluid mb-3"
                             style="width: 200px;">
                     </div>
                     <div class="whatsapp-link">
@@ -252,7 +265,25 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('templateWeb/assets/js/main.js') }}"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Koordinat Lokasi (Ganti dengan koordinat yang sesuai)
+        var latitude = -6.114588026580201; // Contoh Latitude
+        var longitude = 106.89427052068883; // Contoh Longitude
 
+        // Membuat map dengan Leaflet
+        var map = L.map('map').setView([latitude, longitude], 20);
+
+        // Menambahkan TileLayer dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '<a href="kopegmartajungpriok.id">Kopegmar Tanjung Priok</a>'
+        }).addTo(map);
+
+        // Menambahkan Marker pada peta
+        L.marker([latitude, longitude]).addTo(map)
+            .bindPopup("Kopegmar Tanjung Priok") // Ubah dengan deskripsi yang sesuai
+            .openPopup();
+    </script>
 </body>
 
 </html>

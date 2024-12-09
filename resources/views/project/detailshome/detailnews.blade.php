@@ -47,9 +47,9 @@
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="{{ asset('images/kpm2.png') }}" alt="Kopegmar Website Logo"
+                        <img src="{{ asset('images/kpm2.png') }}" alt="Kopegmar-Website-Logo"
                             style="width: 70px; height: auto;">
-                        <img src="{{ asset('images/textkpm.png') }}" alt="Kopegmar Website Logo ."
+                        <img src="{{ asset('images/textkpm.png') }}" alt="Kopegmar-Website-Logo ."
                             style="width: 150px; height: auto;">
                     </div>
                 </h1>
@@ -102,7 +102,7 @@
                         <div class="container">
                             <article class="article">
                                 <div class="post-img">
-                                    <img src="{{ asset($news->image) }}" alt="" class="img-fluid">
+                                    <img src="{{ asset($news->image) }}" alt="{{ $news->title }}" class="img-fluid">
                                 </div>
                                 <h2 class="title">{{ $news->title }}</h2>
                                 <div class="meta-top">
@@ -150,7 +150,7 @@
                             @foreach ($comments as $comment)
                             <div id="comment-{{ $comment->id }}" class="comment">
                                 <div class="d-flex">
-                                    <div class="comment-img"><img src="{{ asset('path/to/avatar.png') }}" alt=""></div>
+                                    <div class="comment-img"><img src="{{ asset('path/to/avatar.png') }}"></div>
                                     <div>
                                         <h5><a href="#">{{ $comment->name }}</a>
                                             <a href="#" class="reply" onclick="toggleReplyForm({{ $comment->id }})"><i
@@ -195,7 +195,7 @@
                                     <div class="comment comment-reply">
                                         <div class="d-flex">
                                             <div class="comment-img">
-                                                <img src="{{ asset('path/to/avatar.png') }}" alt="">
+                                                <img src="{{ asset('path/to/avatar.png') }}">
                                             </div>
                                             <div>
                                                 <h5><a href="">{{ $reply->name }}</a></h5>
@@ -273,7 +273,8 @@
                             <h3 class="widget-title">Recent Posts</h3>
                             @foreach ($recentPosts as $recent)
                             <div class="post-item image-center">
-                                <img src="{{ asset($recent->image) }}" alt="" class="flex-shrink-0 img-fluid">
+                                <img src="{{ asset($recent->image) }}" alt="{{ $recent->title }}"
+                                    class="flex-shrink-0 img-fluid">
                                 <div>
                                     <h4><a
                                             href="{{ route('detail-news', ['id' => $recent->id, 'title' => Str::slug($recent->title, '-')]) }}">{{
@@ -353,7 +354,7 @@
 
                 <div class="col-lg-4 col-md-12 footer-newsletter">
                     <div class="logo">
-                        <img src="{{ asset('images/KPM.png') }}" alt="Logo" class="img-fluid mb-3"
+                        <img src="{{ asset('images/KPM.png') }}" alt="logo-kopegmar" class="img-fluid mb-3"
                             style="width: 200px;">
                     </div>
                     <div class="whatsapp-link">

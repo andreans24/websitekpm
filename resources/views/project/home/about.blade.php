@@ -48,9 +48,9 @@
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="{{ asset('images/kpm2.png') }}" alt="Kopegmar Website Logo"
+                        <img src="{{ asset('images/kpm2.png') }}" alt="Kopegmar-Website-Logo"
                             style="width: 70px; height: auto;">
-                        <img src="{{ asset('images/textkpm.png') }}" alt="Kopegmar Website Logo ."
+                        <img src="{{ asset('images/textkpm.png') }}" alt="Kopegmar-Website-Logo ."
                             style="width: 150px; height: auto;">
                     </div>
                 </h1>
@@ -106,7 +106,8 @@
                                 <h3 class="widget-title">Recent Posts</h3>
                                 @foreach ($recentPosts as $recent)
                                 <div class="post-item image-center">
-                                    <img src="{{ asset($recent->image) }}" alt="" class="flex-shrink-0 img-fluid">
+                                    <img src="{{ asset($recent->image) }}" alt="{{ $recent->title }}"
+                                        class="flex-shrink-0 img-fluid">
                                     <div>
                                         <h4><a
                                                 href="{{ route('detail-news', ['id' => $recent->id, 'title' => Str::slug($recent->title, '-')]) }}">{{
@@ -127,7 +128,8 @@
                         <div class="container section-title">
                             <h2>Struktur Organisasi</h2>
                         </div><!-- End Section Title -->
-                        <img src="{{ asset('images/struktur organisasi.jpeg') }}" alt="" class="img-fluid services-img">
+                        <img src="{{ asset('images/struktur organisasi.jpeg') }}" alt="struktur-organisasi"
+                            class="img-fluid services-img">
                     </div>
                 </div>
             </div>
@@ -202,7 +204,7 @@
 
                 <div class="col-lg-4 col-md-12 footer-newsletter">
                     <div class="logo">
-                        <img src="{{ asset('images/KPM.png') }}" alt="Logo" class="img-fluid mb-3"
+                        <img src="{{ asset('images/KPM.png') }}" alt="logo-kopegmar" class="img-fluid mb-3"
                             style="width: 200px;">
                     </div>
                     <div class="whatsapp-link">

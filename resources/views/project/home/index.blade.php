@@ -47,9 +47,9 @@
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <h1 class="sitename">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img src="{{ asset('images/kpm2.png') }}" alt="Kopegmar Website Logo"
+                        <img src="{{ asset('images/kpm2.png') }}" alt="Kopegmar-Website-Logo"
                             style="width: 70px; height: auto;">
-                        <img src="{{ asset('images/textkpm.png') }}" alt="Kopegmar Website Logo ."
+                        <img src="{{ asset('images/textkpm.png') }}" alt="Kopegmar-Website-Logo ."
                             style="width: 150px; height: auto;">
                     </div>
                 </h1>
@@ -599,7 +599,7 @@
 
                 <div class="col-lg-4 col-md-12 footer-newsletter">
                     <div class="logo">
-                        <img src="{{ asset('images/KPM.png') }}" alt="Logo" class="img-fluid mb-3"
+                        <img src="{{ asset('images/KPM.png') }}" alt="logo-kopegmar" class="img-fluid mb-3"
                             style="width: 200px;">
                     </div>
                     <div class="whatsapp-link">
