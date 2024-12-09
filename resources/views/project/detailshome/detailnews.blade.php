@@ -63,7 +63,7 @@
                         <ul>
                             @foreach ($categories as $category)
                             <li>
-                                <a href="{{ route('detail-service', $category->id) }}">
+                                <a href="{{ route('detail-service', $category->slug) }}">
                                     {{ $category->categories }} </a>
                             </li>
                             @endforeach
@@ -345,7 +345,7 @@
                     <ul>
                         @foreach ($categories as $category)
                         <li>
-                            <a href="{{ route('detail-service', $category->id) }}">
+                            <a href="{{ route('detail-service', $category->slug) }}">
                                 {{ $category->categories }} </a>
                         </li>
                         @endforeach
