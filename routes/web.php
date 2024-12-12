@@ -15,6 +15,12 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SitemapController;
 
+// SITEMAP
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
+use App\Models\News; // Import model News
+use Illuminate\Support\Str; // Import Str untuk membuat slug
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -121,3 +127,32 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
 
     // Sitemap
     Route::get('/generate-sitemap', [SitemapController::class, 'generateSitemap']);
+
+
+
+    Route::get('/sitemap.xml', function () {
+        // Buat instance sitemap
+        $sitemap = Sitemap::create();
+    
+        // Tambahkan halaman utama (home page)
+        $sitemap->add(Url::create('/')->setPriority(1.0));
+    
+        // Ambil berita terbaru dari database
+        $news = News::all();  // Ambil semua berita atau bisa disesuaikan sesuai kebutuhan
+    
+        // Loop dan tambahkan setiap berita ke sitemap
+        foreach ($news as $article) {
+            // Membuat slug dari title
+            $slug = Str::slug($article->title);
+    
+            // Menambahkan URL berita ke sitemap
+            $sitemap->add(
+                Url::create("/news/{$slug}")  // Menggunakan slug sebagai URL
+                    ->setLastModificationDate($article->updated_at)  // Menggunakan updated_at untuk info kapan terakhir diubah
+                    ->setPriority(0.8)  // Set prioritas jika diperlukan
+            );
+        }
+    
+        // Return sitemap sebagai XML
+        return $sitemap->toResponse(request());
+    });

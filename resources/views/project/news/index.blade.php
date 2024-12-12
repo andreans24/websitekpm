@@ -37,8 +37,8 @@
                         @foreach ($news as $i => $item)
                         <tr>
                             <td> {{ $i + 1 }} </td>
-                            <td> {{ $item->title }}</td>
-                            <td>{!! Str::limit(htmlspecialchars_decode(strip_tags($item->description))) !!} </td>
+                            <td> {{ Str::limit($item->title, 30) }}</td>
+                            <td>{!! Str::limit(htmlspecialchars_decode(strip_tags($item->description, 30))) !!} </td>
                             <td>
                                 @if ($item->image)
                                 <!-- Cek jika ada gambar -->

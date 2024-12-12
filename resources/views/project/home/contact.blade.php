@@ -276,7 +276,7 @@
 
         // Menambahkan TileLayer dari OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '<a href="kopegmartajungpriok.id">Kopegmar Tanjung Priok</a>'
+            attribution: '<a href="/">Kopegmar Tanjung Priok</a>'
         }).addTo(map);
 
         // Menambahkan Marker pada peta
