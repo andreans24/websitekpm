@@ -18,7 +18,8 @@ use App\Http\Controllers\SitemapController;
 // SITEMAP
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
-use App\Models\News; // Import model News
+use App\Models\News;
+use App\Models\Service;
 use Illuminate\Support\Str; // Import Str untuk membuat slug
 
 /*
@@ -133,23 +134,37 @@ Route::prefix('admin')->middleware(['admin'])->group(function() {
     Route::get('/sitemap.xml', function () {
         // Buat instance sitemap
         $sitemap = Sitemap::create();
-    
-        // Tambahkan halaman utama (home page)
+
         $sitemap->add(Url::create('/')->setPriority(1.0));
+
+        $sitemap->add(Url::create('/about')->setPriority(0.9));
+
+        $sitemap->add(Url::create('/services')->setPriority(0.8));
+
+        $sitemap->add(Url::create('/portfolio')->setPriority(0.8));
+
+        $sitemap->add(Url::create('/contact')->setPriority(0.7));    
+        
+        $news = News::all(); 
     
-        // Ambil berita terbaru dari database
-        $news = News::all();  // Ambil semua berita atau bisa disesuaikan sesuai kebutuhan
-    
-        // Loop dan tambahkan setiap berita ke sitemap
         foreach ($news as $article) {
             // Membuat slug dari title
             $slug = Str::slug($article->title);
-    
-            // Menambahkan URL berita ke sitemap
             $sitemap->add(
-                Url::create("/news/{$slug}")  // Menggunakan slug sebagai URL
-                    ->setLastModificationDate($article->updated_at)  // Menggunakan updated_at untuk info kapan terakhir diubah
-                    ->setPriority(0.8)  // Set prioritas jika diperlukan
+                Url::create("/news/{$slug}") 
+                    ->setLastModificationDate($article->updated_at) 
+                    ->setPriority(0.8)
+            );
+        }
+
+        $services = Service::all();
+        foreach ($services as $service) {
+            // Menggunakan slug dari service
+            $slug = Str::slug($service->title);  // Gunakan slug dari title
+            $sitemap->add(
+                Url::create("/service/{$slug}")  // Menggunakan slug pada URL
+                    ->setLastModificationDate($service->updated_at)  // Menggunakan updated_at untuk info kapan terakhir diubah
+                    ->setPriority(0.8)
             );
         }
     
