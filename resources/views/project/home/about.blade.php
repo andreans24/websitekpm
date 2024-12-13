@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>KOPEGMAR Website - Tentang Kami</title>
+    <title>KOPEGMAR Website - Tentang Kami Kopegmar</title>
     <meta name="description"
         content="KOPEGMAR menyediakan layanan simpan pinjam dan unit usaha untuk pegawai maritim Tanjung Priok. Temukan layanan unggulan kami di sini!">
     <meta name="keywords"
