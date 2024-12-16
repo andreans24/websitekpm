@@ -175,6 +175,10 @@
                                 class="bi bi-facebook"></i></a>
                         <a href="https://www.instagram.com/kopegmartanjungpriok/"><i class="bi bi-instagram"></i></a>
                         <a href="https://id.linkedin.com/"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://padiumkm.id/store/631a66de8755a8a989634f28" target="_blank">
+                            <img src="{{ asset('images/padiumkm.png') }}" alt="PadiUMKM"
+                                style="width: 24px; height: 24px;">
+                        </a>
                     </div>
                 </div>
 
